@@ -1,174 +1,264 @@
-import { Camera, Heart, Users, Award } from "lucide-react";
+import { Camera, Heart, Users, Award, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="min-h-screen">
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100 via-rose-50 to-pink-100"></div>
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "url(https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
-        <div className="relative z-10 text-center px-4">
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-6"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            About Smilisnhack
+    <div className="min-h-screen bg-white">
+      <section className="relative py-20 bg-gradient-to-br from-pink-600 via-rose-500 to-pink-600 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, white 1px, transparent 1px)",
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            About Smilinshack
           </h1>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Creating unforgettable memories, one photo at a time
+          <p className="text-xl text-pink-100 max-w-3xl mx-auto">
+            Creating unforgettable memories, one smile at a time, since 2015
           </p>
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="text-4xl font-bold mb-8 text-center"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Our Story
-          </h2>
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
-            <p>
-              Founded in 2018, Smilisnhack began with a simple mission: to bring
-              joy and capture authentic moments at every event. What started as
-              a passion project by two photography enthusiasts has grown into
-              one of the most trusted photobooth services in the region.
-            </p>
-            <p>
-              We believe that the best photos capture genuine emotions and
-              spontaneous moments. Our photobooths are designed not just to take
-              pictures, but to create an experience that brings people together,
-              encourages laughter, and produces memories that last a lifetime.
-            </p>
-            <p>
-              Over the years, we&rsquo;ve had the privilege of being part of
-              hundreds of celebrations from intimate weddings to large corporate
-              events, milestone birthdays to community festivals. Each event is
-              unique, and we take pride in tailoring our services to match the
-              vision and atmosphere of your special day.
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center bg-pink-100 text-pink-600 px-4 py-2 rounded-full mb-6">
+                <Sparkles className="w-5 h-5 mr-2" />
+                <span className="text-sm font-semibold">Our Story</span>
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Where Every{" "}
+                <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                  Moment Matters
+                </span>
+              </h2>
+              <p className="text-lg text-gray-600 mb-4">
+                Smilinshack was born from a simple belief: every celebration
+                deserves to be captured in the most fun and memorable way
+                possible. What started as a small venture with one photobooth
+                has grown into a premier event services company.
+              </p>
+              <p className="text-lg text-gray-600 mb-4">
+                We&rsquo;ve had the privilege of being part of thousands of
+                celebrations, from intimate gatherings to grand affairs. Each
+                event is unique, and we take pride in customizing our services
+                to match your vision perfectly.
+              </p>
+              <p className="text-lg text-gray-600">
+                Our team is passionate about creating experiences that bring
+                people together, spark joy, and leave lasting impressions. We
+                don&rsquo;t just provide photobooths—we create memories.
+              </p>
+            </div>
 
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2
-            className="text-4xl font-bold mb-16 text-center"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Why Choose Us
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Camera className="w-10 h-10 text-rose-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Premium Equipment</h3>
-              <p className="text-gray-600">
-                State-of-the-art cameras and printers ensure high-quality
-                results every time
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-10 h-10 text-orange-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Passionate Team</h3>
-              <p className="text-gray-600">
-                Our dedicated team loves what they do and it shows in every
-                event
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-10 h-10 text-pink-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">500+ Events</h3>
-              <p className="text-gray-600">
-                Trusted by hundreds of satisfied clients for their special
-                moments
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="w-10 h-10 text-rose-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Award Winning</h3>
-              <p className="text-gray-600">
-                Recognized for excellence in event photography services
-              </p>
+            <div className="grid grid-cols-2 gap-4">
+              <Image
+                height={1080}
+                width={1920}
+                src="https://images.pexels.com/photos/2788792/pexels-photo-2788792.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Team"
+                className="rounded-2xl shadow-lg aspect-square object-cover"
+              />
+              <Image
+                height={1080}
+                width={1920}
+                src="https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Event"
+                className="rounded-2xl shadow-lg aspect-square object-cover mt-8"
+              />
+              <Image
+                height={1080}
+                width={1920}
+                src="https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Setup"
+                className="rounded-2xl shadow-lg aspect-square object-cover -mt-8"
+              />
+              <Image
+                height={1080}
+                width={1920}
+                src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Fun"
+                className="rounded-2xl shadow-lg aspect-square object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2
-            className="text-4xl font-bold mb-16 text-center"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Meet Our Team
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full mx-auto mb-6"></div>
-              <h3 className="text-2xl font-semibold mb-2">Alex Martinez</h3>
-              <p className="text-gray-600 mb-4">Founder & Lead Photographer</p>
-              <p className="text-sm text-gray-600">
-                With over 10 years in photography, Alex brings creativity and
-                precision to every event.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gradient-to-br from-orange-400 to-rose-500 rounded-full mx-auto mb-6"></div>
-              <h3 className="text-2xl font-semibold mb-2">Jamie Wilson</h3>
-              <p className="text-gray-600 mb-4">Co-Founder & Operations</p>
-              <p className="text-sm text-gray-600">
-                Jamie ensures every detail is perfect, from setup to the final
-                print delivery.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-48 h-48 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full mx-auto mb-6"></div>
-              <h3 className="text-2xl font-semibold mb-2">Sam Taylor</h3>
-              <p className="text-gray-600 mb-4">Event Coordinator</p>
-              <p className="text-sm text-gray-600">
-                Sam&rsquo;s energy and enthusiasm create a fun atmosphere at
-                every photobooth.
-              </p>
-            </div>
+      <section className="py-20 bg-gradient-to-br from-pink-50 via-rose-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Our{" "}
+              <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                Values
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600">What drives us every day</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Heart,
+                title: "Passion",
+                description:
+                  "We love what we do and it shows in every event we serve",
+                gradient: "from-pink-500 to-rose-500",
+              },
+              {
+                icon: Users,
+                title: "Community",
+                description:
+                  "Building lasting relationships with our clients and partners",
+                gradient: "from-rose-500 to-pink-600",
+              },
+              {
+                icon: Award,
+                title: "Excellence",
+                description:
+                  "Delivering premium quality and unforgettable experiences",
+                gradient: "from-pink-600 to-rose-600",
+              },
+            ].map((value, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
+              >
+                <div
+                  className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${value.gradient} mb-6`}
+                >
+                  <value.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  {value.title}
+                </h3>
+                <p className="text-gray-600">{value.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-br from-rose-50 to-orange-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-6"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Let&rsquo;s Create Magic Together
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              By The{" "}
+              <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                Numbers
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: "10+", label: "Years Experience" },
+              { number: "5000+", label: "Happy Events" },
+              { number: "50K+", label: "Photos Captured" },
+              { number: "100%", label: "Client Satisfaction" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-8 bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl shadow-lg"
+              >
+                <div className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-700 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gradient-to-br from-pink-50 via-rose-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Meet Our{" "}
+              <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                Team
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600">
+              The amazing people behind the magic
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Alex Rivera",
+                role: "Founder & CEO",
+                image:
+                  "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
+              },
+              {
+                name: "Jessica Lee",
+                role: "Operations Director",
+                image:
+                  "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
+              },
+              {
+                name: "Marcus Johnson",
+                role: "Lead Photographer",
+                image:
+                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400",
+              },
+              {
+                name: "Sophia Chen",
+                role: "Event Coordinator",
+                image:
+                  "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
+              },
+            ].map((member, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <Image
+                    height={1080}
+                    width={1920}
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-pink-600">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Camera className="w-16 h-16 text-pink-600 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Join Our{" "}
+            <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+              Journey
+            </span>
           </h2>
-          <p className="text-xl text-gray-700 mb-8">
-            Ready to make your event unforgettable? We&rsquo;d love to be part
-            of your celebration.
+          <p className="text-xl text-gray-600 mb-10">
+            We&rsquo;d love to be part of your special moments. Let&rsquo;s
+            create something amazing together!
           </p>
-          <a
-            href="/contact"
-            className="inline-block bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition"
-          >
-            Contact Us Today
-          </a>
         </div>
       </section>
     </div>

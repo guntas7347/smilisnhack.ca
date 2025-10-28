@@ -14,9 +14,9 @@ import {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Smilinshack - Premium Photobooth Services",
+  title: "SmilinShack - Premium Photobooth Services",
   description:
-    "Capture your special moments with Smilinshack photobooth services",
+    "Capture your special moments with SmilinShack photobooth services",
 };
 
 function Navigation() {
@@ -29,7 +29,7 @@ function Navigation() {
               <Camera className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              Smilinshack
+              SmilinShack
             </span>
           </Link>
 
@@ -87,7 +87,7 @@ function Footer() {
               <div className="bg-white/10 p-2 rounded-xl">
                 <Camera className="w-6 h-6" />
               </div>
-              <span className="text-xl font-bold">Smilinshack</span>
+              <span className="text-xl font-bold">SmilinShack</span>
             </div>
             <p className="text-blue-200 text-sm">
               Creating unforgettable memories, one snapshot at a time.
@@ -170,7 +170,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200 text-sm">
-          <p>&copy; 2025 Smilinshack. All rights reserved.</p>
+          <p>&copy; 2025 SmilinShack. All rights reserved.</p>
         </div>
       </div>
     </footer>

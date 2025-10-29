@@ -1,66 +1,108 @@
-import Link from 'next/link';
-import { Check, Star, Sparkles, Camera, ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import { Check, Star, Sparkles, Camera, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Pricing() {
   const packages = [
     {
-      name: 'Basic',
-      price: '$299',
-      duration: '2 hours',
-      image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
+      name: "Digital Delight Package",
+      price: "$350",
+      duration: "2 hours",
+      image:
+        "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800",
       features: [
-        'Professional photobooth setup',
-        'Unlimited photo sessions',
-        'Instant prints (4x6)',
-        'Digital copies via email',
-        'Fun props collection',
-        'On-site attendant'
+        "2 Hours of Non-Stop Fun",
+        "Unlimited Digital Photos",
+        "Instant Sharing via Text or Email",
+        "Custom Event Overlay",
+        "Friendly On-Site Attendant",
+        "Fun Props for Everyone",
+        "Add an Extra Hour – Only $100",
       ],
-      popular: false
+      popular: false,
     },
     {
-      name: 'Premium',
-      price: '$499',
-      duration: '4 hours',
-      image: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800',
+      name: "Print Magic Package",
+      price: "$400",
+      duration: "2 hours",
+      image:
+        "https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800",
       features: [
-        'Everything in Basic',
-        'Custom photo templates',
-        'Social media sharing',
-        'Premium props & backdrops',
-        'Photo guest book',
-        'Online gallery access',
-        'GIF & Boomerang options'
+        "2 Hours of Unlimited Prints & Digitals",
+        "Custom Print Layout with Your Event Theme",
+        "Instant Sharing via Text or Email",
+        "Professional Attendant Included",
+        "Tons of Fun Props",
+        "Add an Extra Hour – $150",
       ],
-      popular: true
+      popular: true,
     },
     {
-      name: 'Luxury',
-      price: '$799',
-      duration: 'Full day',
-      image: 'https://images.pexels.com/photos/2788792/pexels-photo-2788792.jpeg?auto=compress&cs=tinysrgb&w=800',
+      name: "The Luxury Experience Package",
+      price: "$550",
+      duration: "3 hours",
+      image:
+        "https://images.pexels.com/photos/2788792/pexels-photo-2788792.jpeg?auto=compress&cs=tinysrgb&w=800",
       features: [
-        'Everything in Premium',
-        'Red carpet setup',
-        'Video messaging booth',
-        'Green screen technology',
-        'Custom branded prints',
-        'Professional photographer',
-        'Same-day highlight reel',
-        'Premium album included'
+        "3 Hours of Full Premium Service",
+        "Unlimited Digital & Printed Photos",
+        "Red Carpet Setup with LED Lighting",
+        "VIP Stanchions for Elegant Presentation",
+        "Custom Animated Overlay or Welcome Screen",
+        "Two Professional Attendants",
+        "Premium Props, Backdrop & Décor",
+        "Instant Text/Email Sharing for Guests",
+        "Add an Extra Hour – $150",
       ],
-      popular: false
-    }
+      popular: false,
+    },
+  ];
+
+  const addOns = [
+    {
+      name: "Extra Hour",
+      price: "$100",
+      description: "Add more booth time and keep the fun going",
+    },
+    {
+      name: "Green Screen Magic",
+      price: "$150",
+      description: "Choose custom virtual backgrounds & effects",
+    },
+    {
+      name: "Premium Photo Album",
+      price: "$80",
+      description: "Beautiful leather-bound keepsake of your event memories",
+    },
+    {
+      name: "Instant Social Sharing",
+      price: "$50",
+      description: "Guests share photos instantly via social media or text",
+    },
+    {
+      name: "Custom Branded Backdrop",
+      price: "$120",
+      description: "Personalized backdrop featuring your logo or theme",
+    },
+    {
+      name: "Video Message Booth",
+      price: "$100",
+      description: "Let guests record personal video greetings and shoutouts",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <section className="relative py-20 bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }}></div>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, white 1px, transparent 1px)",
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -72,7 +114,8 @@ export default function Pricing() {
             Simple, Honest Pricing
           </h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Choose the perfect package for your event. All packages include professional service and unlimited fun!
+            Choose the perfect package for your event. All packages include
+            professional service and unlimited fun!
           </p>
         </div>
       </section>
@@ -84,7 +127,7 @@ export default function Pricing() {
               <div
                 key={index}
                 className={`relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 ${
-                  pkg.popular ? 'ring-4 ring-blue-500 scale-105' : ''
+                  pkg.popular ? "ring-4 ring-blue-500 scale-105" : ""
                 }`}
               >
                 {pkg.popular && (
@@ -95,7 +138,9 @@ export default function Pricing() {
                 )}
 
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <Image
+                    height={1000}
+                    width={1000}
                     src={pkg.image}
                     alt={pkg.name}
                     className="w-full h-full object-cover"
@@ -103,7 +148,9 @@ export default function Pricing() {
                 </div>
 
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {pkg.name}
+                  </h3>
                   <div className="mb-6">
                     <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                       {pkg.price}
@@ -124,8 +171,8 @@ export default function Pricing() {
                     href="/contact"
                     className={`block text-center px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 ${
                       pkg.popular
-                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-blue-300'
-                        : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                        ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:shadow-lg hover:shadow-blue-300"
+                        : "bg-blue-100 text-blue-600 hover:bg-blue-200"
                     }`}
                   >
                     Book Now
@@ -141,17 +188,24 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-600 rounded-3xl p-12 text-white text-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-                backgroundSize: '40px 40px'
-              }}></div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle, white 1px, transparent 1px)",
+                  backgroundSize: "40px 40px",
+                }}
+              ></div>
             </div>
 
             <div className="relative z-10">
               <Camera className="w-16 h-16 mx-auto mb-6" />
-              <h2 className="text-4xl font-bold mb-4">Need a Custom Package?</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                Need a Custom Package?
+              </h2>
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Have a unique event or special requirements? We'll create a custom package tailored to your needs.
+                Have a unique event or special requirements? We&rsquo;ll create
+                a custom package tailored to your needs.
               </p>
               <Link
                 href="/contact"
@@ -169,27 +223,28 @@ export default function Pricing() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Add-Ons</span>
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                Add-Ons
+              </span>
             </h2>
-            <p className="text-xl text-gray-600">Enhance your experience with these extras</p>
+            <p className="text-xl text-gray-600">
+              Enhance your experience with these extras
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { name: 'Extra Hour', price: '$100', description: 'Extend your photobooth fun' },
-              { name: 'Green Screen', price: '$150', description: 'Virtual backgrounds & effects' },
-              { name: 'Photo Album', price: '$80', description: 'Premium leather-bound album' },
-              { name: 'Social Sharing', price: '$50', description: 'Instant social media uploads' },
-              { name: 'Custom Backdrop', price: '$120', description: 'Personalized branded backdrop' },
-              { name: 'Video Messages', price: '$100', description: 'Record special video greetings' }
-            ].map((addon, index) => (
+            {addOns.map((addon, index) => (
               <div
                 key={index}
                 className="bg-white rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all"
               >
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-gray-900">{addon.name}</h3>
-                  <span className="text-2xl font-bold text-blue-600">{addon.price}</span>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {addon.name}
+                  </h3>
+                  <span className="text-2xl font-bold text-blue-600">
+                    {addon.price}
+                  </span>
                 </div>
                 <p className="text-gray-600">{addon.description}</p>
               </div>

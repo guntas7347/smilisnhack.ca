@@ -13,13 +13,10 @@ export default function Home() {
       <HeroSection />
       <Brands />
       <Features />
+      <RecentWorks />
       <Services />
       <Booking />
-
-      <RecentWorks />
-
       <Clients />
-
       <Contact />
     </div>
   );

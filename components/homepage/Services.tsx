@@ -1,4 +1,4 @@
-import { Camera, Maximize2 } from "lucide-react";
+import { Camera, Maximize2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -35,6 +35,19 @@ const Services = () => {
               description:
                 "Revolutionary 360-degree slow-motion video experience",
               features: ["Slow Motion", "360° View", "Social Ready"],
+            },
+            {
+              image:
+                "https://images.pexels.com/photos/1684231/pexels-photo-1684231.jpeg?auto=compress&cs=tinysrgb&w=800",
+              icon: Sparkles,
+              title: "Mirror Photobooth",
+              description:
+                "Interactive mirror-style photobooth with animations, touch features, and instant sharing",
+              features: [
+                "Touch Interaction",
+                "Animated Prompts",
+                "Instant Sharing",
+              ],
             },
           ].map((service, index) => (
             <div

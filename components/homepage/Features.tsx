@@ -1,4 +1,4 @@
-import { Camera, Maximize2, Sparkles, Zap } from "lucide-react";
+import { Camera, Maximize2, Printer, Sparkles, Zap } from "lucide-react";
 import React from "react";
 
 const Features = () => {
@@ -52,10 +52,11 @@ const Features = () => {
               delay: "0.2s",
             },
             {
-              icon: Sparkles,
-              title: "AI Enhancement",
-              description: "Smart filters and real-time photo enhancements",
-              gradient: "from-slate-600 to-blue-500",
+              icon: Printer,
+              title: "Instant Prints",
+              description:
+                "High-quality photo prints delivered instantly on-site",
+              gradient: "from-slate-600 to-blue-700",
               delay: "0.3s",
             },
           ].map((feature, index) => (

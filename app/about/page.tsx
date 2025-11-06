@@ -1,4 +1,5 @@
 import { Camera, Heart, Users, Award, Sparkles, Target } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -171,7 +172,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-white">
+      {/* <section className="py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -185,7 +186,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
             {[
               {
                 name: "Alex Rivera",
@@ -193,31 +194,15 @@ export default function About() {
                 image:
                   "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
               },
-              {
-                name: "Jessica Lee",
-                role: "Operations Director",
-                image:
-                  "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
-              },
-              {
-                name: "Marcus Johnson",
-                role: "Lead Photographer",
-                image:
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400",
-              },
-              {
-                name: "Sophia Chen",
-                role: "Event Coordinator",
-                image:
-                  "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
-              },
             ].map((member, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
+                className="bg-white size-52 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2"
               >
                 <div className="aspect-square overflow-hidden">
-                  <img
+                  <Image
+                    height={1000}
+                    width={1000}
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
@@ -233,7 +218,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

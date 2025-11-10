@@ -22,8 +22,8 @@ const businessHours = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, url: "https://instagram.com" },
-  { icon: Facebook, url: "https://facebook.com" },
+  { icon: Instagram, url: "https://www.instagram.com/smilinshack" },
+  { icon: Facebook, url: "https://www.facebook.com/share/1AGQjAqxWR" },
   { icon: Twitter, url: "https://twitter.com" },
 ];
 

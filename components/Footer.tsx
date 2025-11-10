@@ -20,12 +20,12 @@ const socialLinks = [
   {
     name: "Instagram",
     icon: Instagram,
-    url: "https://instagram.com/smilinshack",
+    url: "https://www.instagram.com/smilinshack",
   },
   {
     name: "Facebook",
     icon: Facebook,
-    url: "https://facebook.com/smilinshack",
+    url: "https://www.facebook.com/share/1AGQjAqxWR",
   },
   {
     name: "Twitter",

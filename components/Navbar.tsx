@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,6 +21,15 @@ export default function Navigation() {
               SmilinShack
             </span>
           </Link>
+
+          <div className="md:hidden">
+            <a href="tel:+16474820256" className="flex items-center space-x-4">
+              <Phone className="size-7 md:size-5 text-blue-600" />
+              <span className="text-gray-900 font-medium hidden md:block">
+                +1 (647) 482-0256
+              </span>
+            </a>{" "}
+          </div>
 
           <div className="hidden md:flex items-center space-x-8">
             <Link

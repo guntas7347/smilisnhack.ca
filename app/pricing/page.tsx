@@ -60,11 +60,6 @@ export default function Pricing() {
 
   const addOns = [
     {
-      name: "Extra Hour",
-      price: "$100",
-      description: "Add more booth time and keep the fun going",
-    },
-    {
       name: "Green Screen Magic",
       price: "$150",
       description: "Choose custom virtual backgrounds & effects",

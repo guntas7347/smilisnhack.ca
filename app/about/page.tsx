@@ -153,8 +153,8 @@ export default function About() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "10+", label: "Years Experience" },
-              { number: "5000+", label: "Happy Events" },
+              { number: "3+", label: "Years Experience" },
+              { number: "500+", label: "Happy Events" },
               { number: "50K+", label: "Photos Captured" },
               { number: "100%", label: "Client Satisfaction" },
             ].map((stat, index) => (

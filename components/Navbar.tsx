@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
-  const { getMode, toggle } = useDarkMode();
+  const { mode, toggle } = useDarkMode();
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-6">
@@ -57,7 +57,7 @@ const Navbar = () => {
             onClick={toggle}
           >
             <span className="material-symbols-outlined text-[20px]">
-              {getMode() === "dark" ? <Moon /> : <Sun />}
+              {mode === "dark" ? <Moon /> : <Sun />}
             </span>
           </button>
           <button className="group flex h-10 items-center gap-2 rounded-full bg-primary text-white px-5 text-sm font-bold transition-all hover:bg-primary-hover shadow-lg shadow-pink-500/20">

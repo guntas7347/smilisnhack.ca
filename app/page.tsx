@@ -2,11 +2,13 @@ import ContactCard from "@/components/ContactCard";
 import {
   ArrowLeft,
   ArrowRight,
+  GalleryHorizontal,
   Locate,
   MapPin,
   PlayCircle,
   Star,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const testimonials = [
@@ -100,13 +102,19 @@ export default function Home() {
                   prints and digital sharing.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mt-2">
-                  <button className="flex h-12 items-center justify-center rounded-full bg-secondary hover:bg-yellow-400 px-8 text-base font-bold text-text-primary shadow-lg shadow-yellow-500/20 transition-all hover:scale-105 active:scale-95">
+                  <Link
+                    href="/contact"
+                    className="flex h-12 items-center justify-center rounded-full bg-secondary hover:bg-yellow-400 px-8 text-base font-bold text-text-primary shadow-lg shadow-yellow-500/20 transition-all hover:scale-105 active:scale-95"
+                  >
                     Check Availability
-                  </button>
-                  <button className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-primary/20 dark:border-white/10 bg-transparent px-8 text-base font-bold text-primary dark:text-white hover:bg-primary/5 dark:hover:bg-white/5 transition-colors">
-                    <PlayCircle className="material-symbols-outlined" />
-                    See How It Works
-                  </button>
+                  </Link>
+                  <Link
+                    href="/gallery"
+                    className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-primary/20 dark:border-white/10 bg-transparent px-8 text-base font-bold text-primary dark:text-white hover:bg-primary/5 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <GalleryHorizontal className="material-symbols-outlined" />
+                    View Gallery
+                  </Link>
                 </div>
                 <div className="flex items-center gap-4 mt-4 text-sm text-text-secondary dark:text-text-secondary-dark">
                   <div className="flex -space-x-3">

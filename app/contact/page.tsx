@@ -69,7 +69,7 @@ const ContactPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <a
                 className="flex items-center gap-4 p-5 rounded-2xl bg-white border shadow-sm hover:-translate-y-1 transition-all"
-                href="tel:5551234567"
+                href="tel:+16474820256"
               >
                 <div className="bg-gold/10 p-3 rounded-full text-amber-500">
                   <Phone className="w-6 h-6" />
@@ -78,13 +78,13 @@ const ContactPage = () => {
                   <p className="text-xs font-bold uppercase tracking-wider text-amber-400">
                     Phone
                   </p>
-                  <p className="font-bold">(555) 123-4567</p>
+                  <p className="font-bold">+1 (647) 482-0256</p>
                 </div>
               </a>
 
               <a
                 className="flex items-center gap-4 p-5 rounded-2xl bg-white border shadow-sm hover:-translate-y-1 transition-all"
-                href="mailto:hello@smilinshack.com"
+                href="mailto:smilinshack@gmail.com"
               >
                 <div className="bg-gold/10 p-3 rounded-full text-amber-500">
                   <Mail className="w-6 h-6" />
@@ -93,7 +93,7 @@ const ContactPage = () => {
                   <p className="text-xs font-bold uppercase tracking-wider text-amber-400">
                     Email
                   </p>
-                  <p className="font-bold">hello@smilinshack.com</p>
+                  <p className="font-bold">smilinshack@gmail.com</p>
                 </div>
               </a>
             </div>

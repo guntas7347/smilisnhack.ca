@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Core Colors */
+  --color-primary: #ffc145; /* Golden */
+  --color-secondary: #ff6584; /* Baby Pink */
+
+  /* Backgrounds */
+  --color-background-light: #fff5f7;
+  --color-background-dark: #1a0b2e;
+  --color-background-card: #ffe0e9;
+  --color-background-card-dark: #2d1b4e;
+
+  /* Text */
+  --color-text-primary: #2d2038;
+  --color-text-primary-dark: #f8f5fa;
+  --color-text-muted: #6b5b75;
+  --color-text-muted-dark: #d4c5de;
+
+  /* Accents (derived, not contradictory) */
+  --color-gold: #ffc145;
+  --color-pink: #ff6584;
+
+  /* Fonts */
+  --font-display: var(--font-fredoka), sans-serif;
+  --font-body: var(--font-jakarta), sans-serif;
+
+  /* Border Radius */
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.5rem;
+  --radius-3xl: 3rem;
+
+  /* Background Images */
+  --background-image-hero-glow: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 193, 69, 0.18) 0%,
+    rgba(255, 245, 247, 0) 70%
+  );
+
+  --background-image-hero-glow-dark: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 193, 69, 0.12) 0%,
+    rgba(26, 11, 46, 0) 70%
+  );
+
+  --background-image-gold-gradient: linear-gradient(
+    135deg,
+    #ffc145 0%,
+    #ffb000 100%
+  );
+
+  --background-image-pink-gradient: linear-gradient(
+    135deg,
+    #ff6584 0%,
+    #ff477e 100%
+  );
+
+  /* Shadows */
+  --shadow-soft: 0 10px 40px -10px rgba(255, 101, 132, 0.18);
+  --shadow-soft-dark: 0 10px 40px -10px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 4px 20px rgba(45, 32, 56, 0.08);
+  --shadow-card-dark: 0 4px 20px rgba(0, 0, 0, 0.3);
+}

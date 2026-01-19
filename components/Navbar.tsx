@@ -60,12 +60,15 @@ const Navbar = () => {
               {mode === "dark" ? <Moon /> : <Sun />}
             </span>
           </button>
-          <button className="group flex h-10 items-center gap-2 rounded-full bg-primary text-white px-5 text-sm font-bold transition-all hover:bg-primary-hover shadow-lg shadow-pink-500/20">
+          <Link
+            href="/contact"
+            className="group flex h-10 items-center gap-2 rounded-full bg-primary text-white px-5 text-sm font-bold transition-all hover:bg-primary-hover shadow-lg shadow-pink-500/20"
+          >
             <span>Book Now</span>
             <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">
               <ArrowRight />
             </span>
-          </button>
+          </Link>
         </div>
       </nav>
     </div>

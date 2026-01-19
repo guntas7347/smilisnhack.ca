@@ -1,51 +1,16 @@
 import ContactCard from "@/components/ContactCard";
+import Testimonials from "@/components/Testimonials";
+import getGoogleReviews from "@/lib/googleReviews";
 import {
   ArrowLeft,
   ArrowRight,
   GalleryHorizontal,
-  Locate,
   MapPin,
-  PlayCircle,
   Star,
 } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
-  const testimonials = [
-    {
-      name: "Sarah & Mike",
-      type: "Wedding",
-      rating: 5.0,
-      avatar:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAsQ8vvIOMCSkkHr-TBmKYktTSOoPwBKghH79DNiRf-pSbOiEVC0HDQnoZg_Ko4fYpefw_ZDXJlwLAvH_QipUgGquPNBcxIMBYgviPKEfMFWnGUcH4eQvCf4iY0SATAgJYG7aNJcB-gobDbbkUohiLL2kDiTdOusCkPVqH6dbxH6E7EmS02SiLSKruQM9flq4dJlv3ph213BbcPZUJG3Wg_knODfOXraR4bswk-e9BSJqVV_8x7ogIYyCYzs5kfGWkOO4JEHGK-H1c",
-      text: "The highlight of our wedding! Everyone loved the props and the instant prints were such a great favor for guests.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuB5pTnHFQYehSK0wA2hKgKhfrr3xKP_PRLflIq5m3GbRqK6HQBJyW66YB1XUdlp2NDfDKO62zRhUoHCegMSNA0FVeX5hCas55meIgMB02KHZpROGF8NKcdr0KMdjrLphMdEl9JF3lhQTx364WinJYacNRWyEb4pPci6gB5PDQNqTWePKAgbabV37qwGy9WPUVIrxodLcqdQHiCsQsXrA6p8_JN4_bpcKa5BtW5XD62GXUZjY2QFmbE97KqSWLwpBb6tS4i56T8K8-I",
-      initials: null,
-    },
-    {
-      name: "TechCorp Gala",
-      type: "Corporate",
-      rating: 5.0,
-      avatar: null,
-      initials: "TC",
-      text: "Professional and fun setup. The branding on the prints was perfect for our company event. Highly recommended!",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCVHF4hjwbjCHw3n-Y72hpeEY7W-6RDU7YXHjJwBHupRnyeU1qEbvbROIaijEuUM4j3t5FNk3WPydwyM7RAwoj9SmZ_RxaIISOox7dTzAqcdHJQSGgPzBeMVL2uC7lGQic1L0TQ-kgt1x4RKmam2-6bYD7zKzMhfTJ4rQByqCLk9I_d4wEcOKUe2vS3hqr3LaqwiQFYwikeJKKKo6jhZ7qhZhjv2RTn0mNWyl3wOy0d9DQaQeaSylM0O7Av7ws0pztjmmCd_efc6Ak",
-    },
-    {
-      name: "Emily's 30th",
-      type: "Birthday",
-      rating: 4.9,
-      avatar:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBuxjBvFDH7eRUzbAC-MRApdQSkKrs75Obfmo1borD4b0bb3bz_RunrEq4M2WOdNRXBJ-b0zmVWgTKcx9Kldo74i8IATkOemjyP7FWHwvgi624o6j7f-dtInkE55T3A6fyrLga4dRchBtROzbK20C3KpTO3qqQdcEMV6Bad7YrVTTnmIFle0GrbqE_rWyCkFnNzb33zbzI4leClTDCwz7dXepD_kSog6tGlqE5R4JVknkwJ8YGGKIxz-WNKz_xH9Ikgvkp1E7Lag98",
-      initials: null,
-      text: "Best birthday addition ever. The backdrop was stunning and the attendant was super helpful all night.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDWpccFQngmTbigOFScZkDJ6KuCvbkLe41zMem7Zqk4Rppr0yUoNqPOxmEBcU9W2Bvqj6XfnKtln93cZtMaWwP3MPMGGeRKSIfFBKuxK3YCrom88Vx_tt-ZmZ5KqY9a8qYNvM8wLJtVDYc8QyigQdLs-ZU1zCXaxtXIbUB4MNxNe0WcLFoUVqnbYeSCUx3gzKBhsw4SJxbWePBTTwh6Wv9Goj7BDU4hiz_086cdaX-IuPvPbqNABancSZEphMxevDy48eP8DUTwjSY",
-    },
-  ];
-
+export default async function Home() {
   const gallery = [
     {
       title: "Neon Nights",
@@ -174,67 +139,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-8 pt-6">
-            <div className="flex items-center justify-between px-2">
-              <h2 className="text-2xl font-display font-bold text-text-primary dark:text-white">
-                What Our Clients Say
-              </h2>
-              <div className="flex gap-3">
-                <button className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-background-card-dark hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary dark:hover:text-primary text-text-primary dark:text-white transition-colors shadow-sm">
-                  <ArrowLeft className="material-symbols-outlined" />
-                </button>
-                <button className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-text-primary hover:bg-yellow-400 transition-colors shadow-sm">
-                  <ArrowRight className="material-symbols-outlined" />
-                </button>
-              </div>
-            </div>
-            <div className="flex gap-6 overflow-x-auto hide-scrollbar pb-4 snap-x snap-mandatory">
-              {testimonials.map((t, i) => (
-                <div
-                  key={i}
-                  className="snap-start min-w-[300px] max-w-[340px] flex-1 flex flex-col p-6 rounded-2xl bg-white dark:bg-background-card-dark border border-white/50 dark:border-white/5 shadow-card dark:shadow-card-dark transition-all hover:-translate-y-1"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    {t.avatar ? (
-                      <div
-                        className="h-12 w-12 rounded-full bg-cover bg-center border border-gray-100 dark:border-gray-700"
-                        style={{ backgroundImage: `url("${t.avatar}")` }}
-                      />
-                    ) : (
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/20 text-accent-blue font-bold border border-blue-100 dark:border-blue-800">
-                        {t.initials}
-                      </div>
-                    )}
-
-                    <div>
-                      <p className="font-bold text-sm text-text-primary dark:text-white">
-                        {t.name}
-                      </p>
-                      <p className="text-xs text-text-secondary dark:text-text-secondary-dark font-medium">
-                        {t.type}
-                      </p>
-                    </div>
-
-                    <div className="ml-auto flex">
-                      <Star className="material-symbols-outlined text-secondary text-[20px] fill-current" />
-                      <span className="text-sm font-bold ml-1 text-text-primary dark:text-white">
-                        {t.rating}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="text-text-secondary dark:text-text-secondary-dark text-sm leading-relaxed mb-4">
-                    "{t.text}"
-                  </p>
-
-                  <div
-                    className="mt-auto h-32 w-full rounded-xl bg-cover bg-center opacity-90"
-                    style={{ backgroundImage: `url("${t.image}")` }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <Testimonials />
           <div className="flex flex-col gap-6 pt-8">
             <div className="flex items-end justify-between px-2 pt-4">
               <div className="flex flex-col gap-1">

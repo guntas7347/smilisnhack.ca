@@ -2,17 +2,10 @@ import { useEffect, useState, useCallback } from "react";
 
 type Mode = "dark" | "light";
 
-function readMode(): Mode {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
-}
+const DEFAULT_MODE: Mode = "dark";
 
 export function useDarkMode() {
-  const [mode, setMode] = useState<Mode>("light");
-
-  useEffect(() => {
-    setMode(readMode());
-  }, []);
+  const [mode, setMode] = useState<Mode>(DEFAULT_MODE);
 
   useEffect(() => {
     const html = document.documentElement;

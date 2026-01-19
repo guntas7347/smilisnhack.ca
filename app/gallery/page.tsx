@@ -1,5 +1,5 @@
 import ContactCard from "@/components/ContactCard";
-import getGallery from "@/lib/gallery";
+import getGallery from "@/lib/instagramPosts";
 import { Loader } from "lucide-react";
 
 type GalleryImage = {

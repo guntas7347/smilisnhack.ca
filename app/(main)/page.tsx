@@ -51,7 +51,7 @@ export default async function Home() {
             <div className="flex flex-col lg:flex-row">
               <div className="flex flex-1 flex-col justify-center p-8 lg:p-12 xl:p-16 gap-6 z-10">
                 <div className="inline-flex w-fit items-center gap-2 rounded-full bg-pink-50 dark:bg-primary/10 border border-pink-100 dark:border-primary/20 px-4 py-1.5 text-xs font-bold text-primary dark:text-primary uppercase tracking-wide">
-                  <MapPin className="material-symbols-outlined text-[14px] text-primary dark:text-primary" />
+                  <MapPin className="  text-[14px] text-primary dark:text-primary" />
                   Toronto &amp; GTA
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black leading-[1.1] tracking-tight text-text-primary dark:text-white">
@@ -77,7 +77,7 @@ export default async function Home() {
                     href="/gallery"
                     className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-primary/20 dark:border-white/10 bg-transparent px-8 text-base font-bold text-primary dark:text-white hover:bg-primary/5 dark:hover:bg-white/5 transition-colors"
                   >
-                    <GalleryHorizontal className="material-symbols-outlined" />
+                    <GalleryHorizontal className=" " />
                     View Gallery
                   </Link>
                 </div>
@@ -129,11 +129,11 @@ export default async function Home() {
                     </span>
                   </div>
                   <div className="flex gap-1 mt-2">
-                    <Star className="material-symbols-outlined text-secondary text-sm fill-current" />{" "}
-                    <Star className="material-symbols-outlined text-secondary text-sm fill-current" />{" "}
-                    <Star className="material-symbols-outlined text-secondary text-sm fill-current" />{" "}
-                    <Star className="material-symbols-outlined text-secondary text-sm fill-current" />{" "}
-                    <Star className="material-symbols-outlined text-secondary text-sm fill-current" />{" "}
+                    <Star className="  text-secondary text-sm fill-current" />{" "}
+                    <Star className="  text-secondary text-sm fill-current" />{" "}
+                    <Star className="  text-secondary text-sm fill-current" />{" "}
+                    <Star className="  text-secondary text-sm fill-current" />{" "}
+                    <Star className="  text-secondary text-sm fill-current" />{" "}
                   </div>
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default async function Home() {
                         {item.title}
                       </p>
                       <div className="flex items-center gap-1 text-secondary text-sm font-medium">
-                        <MapPin className="material-symbols-outlined text-[16px]" />
+                        <MapPin className="  text-[16px]" />
                         <span>{item.location}</span>
                       </div>
                     </div>
@@ -189,7 +189,7 @@ export default async function Home() {
         </div>
       </main>
       {/* <button className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-text-primary shadow-lg shadow-yellow-500/20 transition-all hover:scale-110 active:scale-95 hover:shadow-yellow-500/40">
-        <span className="material-symbols-outlined text-[28px]">
+        <span className="  text-[28px]">
           chat_bubble
         </span>
       </button> */}

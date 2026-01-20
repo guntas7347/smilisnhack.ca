@@ -68,16 +68,17 @@ const ServicesPage = () => {
   ];
 
   return (
-    <main className="min-h-screen w-full flex items-center justify-center bg-background-light dark:bg-background-dark transition-colors duration-300">
+    <main className="min-h-screen w-full flex items-center justify-center dark:bg-background-dark transition-colors duration-300">
       <div className="w-full max-w-5xl px-4 pb-12 md:pb-8 flex flex-col items-center">
-        <div className=" text-center mb-12">
-          <h2 className="text-text-main dark:text-text-inverse text-3xl md:text-4xl font-black tracking-tight mb-3">
+        <div className="text-center mb-12">
+          <h2 className="text-text-primary dark:text-white text-3xl md:text-4xl font-black tracking-tight mb-3">
             Our Premium Services
           </h2>
-          <p className="text-text-muted dark:text-text-muted-dark text-lg">
+          <p className="text-text-secondary dark:text-text-secondary-dark text-lg">
             Choose the perfect experience for your next event
           </p>
         </div>
+
         <div className="flex flex-col gap-8 mb-12">
           {services.map((s, i) => {
             const Icon = s.icon;
@@ -85,7 +86,7 @@ const ServicesPage = () => {
             return (
               <div
                 key={i}
-                className="group relative bg-white dark:bg-surface-dark rounded-lg p-4 shadow-xl shadow-secondary/5 dark:shadow-black/40 hover:shadow-2xl hover:shadow-secondary/10 dark:hover:shadow-black/50 transition-all duration-300 border border-secondary/10 dark:border-secondary/20"
+                className="group relative bg-white dark:bg-background-card-dark rounded-lg p-4 shadow-card dark:shadow-card-dark border border-white dark:border-white/5 transition-all duration-300"
               >
                 <div
                   className={`flex flex-col ${
@@ -102,7 +103,7 @@ const ServicesPage = () => {
                       <div
                         className={`absolute top-4 ${
                           s.badgePos === "right" ? "right-4" : "left-4"
-                        } bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-secondary/10 shadow-sm`}
+                        } bg-white/90 dark:bg-background-card-dark/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-white/40 dark:border-white/10 shadow-sm`}
                       >
                         {s.badge}
                       </div>
@@ -119,13 +120,13 @@ const ServicesPage = () => {
                         s.reverse ? "flex-row-reverse md:flex-row" : ""
                       } justify-between items-start mb-2`}
                     >
-                      <h3 className="text-2xl font-bold text-text-main dark:text-white group-hover:text-secondary dark:group-hover:text-primary transition-colors">
+                      <h3 className="text-2xl font-bold text-text-primary dark:text-white transition-colors">
                         {s.title}
                       </h3>
                       <Icon className="w-7 h-7 text-secondary dark:text-primary" />
                     </div>
 
-                    <p className="text-text-muted dark:text-text-muted-dark text-base leading-relaxed mb-6">
+                    <p className="text-text-secondary dark:text-text-secondary-dark text-base leading-relaxed mb-6">
                       {s.desc}
                     </p>
 
@@ -137,7 +138,7 @@ const ServicesPage = () => {
                       {s.features.map((f, j) => (
                         <span
                           key={j}
-                          className="px-3 py-1 bg-surface-light dark:bg-white/5 border border-secondary/20 dark:border-primary/20 rounded-full text-xs font-bold text-secondary dark:text-primary"
+                          className="px-3 py-1 bg-white/60 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-full text-xs font-bold text-secondary dark:text-primary"
                         >
                           {f}
                         </span>
@@ -145,11 +146,11 @@ const ServicesPage = () => {
                     </div>
 
                     <div
-                      className={`mt-auto flex items-center justify-between pt-4 border-t border-secondary/10 dark:border-white/10 ${
+                      className={`mt-auto flex items-center justify-between pt-4 border-t border-white/40 dark:border-white/10 ${
                         s.reverse ? "md:flex-row-reverse" : ""
                       }`}
                     >
-                      <span className="text-lg font-bold text-text-main dark:text-text-inverse">
+                      <span className="text-lg font-bold text-text-primary dark:text-white">
                         From{" "}
                         <span className="text-secondary dark:text-primary">
                           ${s.price}
@@ -157,7 +158,7 @@ const ServicesPage = () => {
                       </span>
 
                       <button
-                        className={`flex items-center gap-2 text-secondary dark:text-white font-bold hover:gap-3 transition-all ${
+                        className={`flex items-center gap-2 text-secondary dark:text-white font-bold transition-all ${
                           s.reverse ? "flex-row-reverse md:flex-row" : ""
                         }`}
                       >
@@ -172,32 +173,34 @@ const ServicesPage = () => {
             );
           })}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {customizations.map((c, i) => {
             const Icon = c.icon;
 
             return (
               <div
                 key={i}
-                className="bg-white dark:bg-surface-dark rounded-lg p-8 text-center border border-secondary/10 dark:border-secondary/20 shadow-lg shadow-secondary/5 dark:shadow-black/20 hover:-translate-y-1 hover:border-secondary/50 dark:hover:border-primary/50 transition-all duration-300 group"
+                className="bg-white dark:bg-background-card-dark rounded-lg p-8 text-center border border-white dark:border-white/5 shadow-card dark:shadow-card-dark transition-all duration-300"
               >
-                <div className="w-20 h-20 mx-auto bg-surface-light dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-secondary dark:text-primary group-hover:scale-110 transition-transform">
+                <div className="w-20 h-20 mx-auto bg-white/60 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-secondary dark:text-primary">
                   <Icon className="w-10 h-10" />
                 </div>
 
-                <h3 className="text-xl font-bold text-text-main dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-text-primary dark:text-white mb-3">
                   {c.title}
                 </h3>
 
-                <p className="text-text-muted dark:text-text-muted-dark text-sm leading-relaxed">
+                <p className="text-text-secondary dark:text-text-secondary-dark text-sm leading-relaxed">
                   {c.desc}
                 </p>
               </div>
             );
           })}
-        </div>{" "}
+        </div>
+
         <ContactCard />
-      </div>{" "}
+      </div>
     </main>
   );
 };

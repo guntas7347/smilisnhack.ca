@@ -21,7 +21,13 @@ export default getGoogleReviews;
 const normalizeGoogleReviews = (reviews: any, limit = 5) => {
   if (!Array.isArray(reviews)) return [];
 
-  return reviews.slice(0, limit).map((r) => ({
+  const sorted = [...reviews].sort((a, b) => {
+    const ta = a?.iso_date ? Date.parse(a.iso_date) : 0;
+    const tb = b?.iso_date ? Date.parse(b.iso_date) : 0;
+    return tb - ta; // latest first
+  });
+
+  return sorted.slice(0, limit).map((r) => ({
     authorName: r.user?.name || "Anonymous",
     source: "google",
     score: typeof r.rating === "number" ? r.rating : 0,

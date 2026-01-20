@@ -4,8 +4,6 @@ import { useEffect, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
-import { uploadBlogImage } from "@/lib/firebase/upload";
-
 type Props = {
   value: string;
   onChange: (v: string) => void;

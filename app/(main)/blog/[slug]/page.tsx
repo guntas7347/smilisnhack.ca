@@ -1,7 +1,7 @@
 import { getPostBySlug } from "@/lib/firebase/posts";
 import { notFound } from "next/navigation";
 
-export default async function IndividualBlogPage({ params }) {
+export default async function IndividualBlogPage({ params }: any) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 

@@ -21,7 +21,7 @@ export type Post = {
   content: string;
   imageUrl: string;
   published: boolean;
-  featured: boolean;
+  featured?: boolean;
   createdAt?: any;
   updatedAt?: any;
 };

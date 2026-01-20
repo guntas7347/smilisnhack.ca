@@ -9,9 +9,23 @@ import {
   Calendar,
   ChevronDown,
   ArrowRight,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 
 const ContactPage = () => {
+  const socials = [
+    {
+      Icon: Facebook,
+      href: "https://www.facebook.com/share/1GNgwKRVr9",
+      label: "Facebook",
+    },
+    {
+      Icon: Instagram,
+      href: "https://www.instagram.com/smilinshack",
+      label: "Instagram",
+    },
+  ];
   return (
     <main className="flex-1 w-full px-4 md:px-10 lg:px-40 pb-8 md:pb-16 mx-auto max-w-[1440px] dark:bg-background-dark transition-colors">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
@@ -111,11 +125,25 @@ const ContactPage = () => {
               Follow the Fun
             </h3>
             <div className="flex gap-4">
-              {[Camera, ThumbsUp, Film].map((Icon, i) => (
+              {[
+                {
+                  Icon: Facebook,
+                  href: "https://www.facebook.com/yourpage",
+                  label: "Facebook",
+                },
+                {
+                  Icon: Instagram,
+                  href: "https://www.instagram.com/yourpage",
+                  label: "Instagram",
+                },
+              ].map(({ Icon, href, label }, i) => (
                 <a
                   key={i}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="size-14 rounded-2xl bg-white dark:bg-background-card-dark border border-white/40 dark:border-white/5 shadow-card dark:shadow-card-dark flex items-center justify-center hover:bg-primary hover:text-white transition-all"
-                  href="#"
                 >
                   <Icon className="w-6 h-6" />
                 </a>

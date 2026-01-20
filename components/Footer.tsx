@@ -17,21 +17,15 @@ const Footer = () => {
         <div className="flex gap-8 text-sm font-bold text-text-secondary dark:text-text-secondary-dark">
           <a
             className="hover:text-primary dark:hover:text-secondary transition-colors"
-            href="#"
-          >
-            Privacy
-          </a>
-          <a
-            className="hover:text-primary dark:hover:text-secondary transition-colors"
-            href="#"
-          >
-            Terms
-          </a>
-          <a
-            className="hover:text-primary dark:hover:text-secondary transition-colors"
-            href="#"
+            href="https://www.instagram.com/smilinshack"
           >
             Instagram
+          </a>
+          <a
+            className="hover:text-primary dark:hover:text-secondary transition-colors"
+            href="https://www.facebook.com/share/1GNgwKRVr9"
+          >
+            Facebook
           </a>
         </div>
         <p className="text-sm text-text-secondary dark:text-text-secondary-dark font-medium">

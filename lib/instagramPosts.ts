@@ -7,15 +7,33 @@ type Post = {
   media_type?: string;
 };
 
-const getGallery = async () => {
-  const INSTAGRAM_TOKEN = process.env.INSTAGRAM_TOKEN;
+const getGallery = async (pages: number = 0) => {
+  const token = process.env.INSTAGRAM_TOKEN;
 
   try {
-    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,timestamp,media_type&access_token=${INSTAGRAM_TOKEN}`;
-    const res = await fetch(url, { next: { revalidate: 60 * 60 * 24 } }); // revalidate every day
-    const json = await res.json();
+    let all: Post[] = [];
+    let nextUrl: string | null =
+      `https://graph.instagram.com/me/media?fields=id,caption,media_url,permalink,timestamp,media_type,thumbnail_url&access_token=${token}&limit=100`;
 
-    const filtered = (json.data || []).filter(
+    let fetchedPages = 0;
+
+    while (nextUrl) {
+      if (pages !== 0 && fetchedPages >= pages) break;
+
+      const res: any = await fetch(nextUrl, {
+        next: { revalidate: 60 * 60 * 24 },
+      });
+      const json: any = await res.json();
+
+      if (json.data?.length) {
+        all.push(...json.data);
+      }
+
+      nextUrl = json.paging?.next || null;
+      fetchedPages++;
+    }
+
+    const filtered = all.filter(
       (p: Post) =>
         (p.media_type === "IMAGE" || p.media_type === "CAROUSEL_ALBUM") &&
         p.media_url,
@@ -24,6 +42,7 @@ const getGallery = async () => {
     return filtered;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 

@@ -4,21 +4,22 @@ import { auth } from "@/lib/firebase/firebase";
 import { logout } from "@/lib/firebase/auth";
 import { onAuthStateChanged, User } from "firebase/auth";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import this for active states
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   User2,
   LogOut,
-  LayoutDashboard,
   FileText,
   Quote,
   Layers,
   CreditCard,
   Puzzle,
   HelpCircle,
+  Menu,
+  X,
 } from "lucide-react";
 
-// Configuration for links to keep JSX clean
+// Configuration for links
 const navLinks = [
   { name: "Blog", href: "/admin/blog", icon: FileText },
   { name: "Quotes", href: "/admin/quotes", icon: Quote },
@@ -30,7 +31,8 @@ const navLinks = [
 
 export default function AdminNavbar() {
   const [user, setUser] = useState<User | null>(null);
-  const pathname = usePathname(); // Get current route
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
@@ -39,13 +41,19 @@ export default function AdminNavbar() {
     return () => unsub();
   }, []);
 
+  const handleLogout = async () => {
+    const ask = confirm("Logout?");
+    if (!ask) return;
+    await logout();
+    window.location.href = "/admin/auth";
+  };
+
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* --- Left Side: Logo & Navigation --- */}
+          {/* --- Left Side: Logo & Desktop Nav --- */}
           <div className="flex items-center gap-8">
-            {/* Logo Area */}
             <Link href="/admin" className="flex items-center gap-2 group">
               <div className="relative h-8 w-8 overflow-hidden rounded-lg shadow-sm group-hover:shadow-md transition-all">
                 <img
@@ -59,7 +67,7 @@ export default function AdminNavbar() {
               </span>
             </Link>
 
-            {/* Navigation Links */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -91,8 +99,9 @@ export default function AdminNavbar() {
             </div>
           </div>
 
-          {/* --- Right Side: User Profile & Actions --- */}
+          {/* --- Right Side: User & Actions --- */}
           <div className="flex items-center gap-4">
+            {/* User Profile (Desktop) */}
             {user && (
               <div className="hidden sm:flex items-center gap-3 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full">
                 <div className="bg-indigo-100 p-1 rounded-full">
@@ -104,14 +113,10 @@ export default function AdminNavbar() {
               </div>
             )}
 
+            {/* Logout Button (Desktop) */}
             <button
-              onClick={async () => {
-                const ask = confirm("Logout?");
-                if (!ask) return;
-                await logout();
-                window.location.href = "/admin/auth";
-              }}
-              className="group flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:text-red-600 transition-colors"
+              onClick={handleLogout}
+              className="hidden sm:flex group items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:text-red-600 transition-colors"
               title="Sign out"
             >
               <LogOut
@@ -120,9 +125,69 @@ export default function AdminNavbar() {
               />
               <span className="hidden sm:inline">Logout</span>
             </button>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-md transition-colors"
+            >
+              {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </div>
+
+      {/* --- Mobile Menu Dropdown --- */}
+      {isMobileOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-lg z-40 animate-in slide-in-from-top-2 duration-200">
+          <div className="p-4 space-y-4">
+            {/* Mobile Links */}
+            <div className="grid grid-cols-2 gap-2">
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive = pathname?.startsWith(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileOpen(false)} // Close menu on click
+                    className={`
+                      flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-colors
+                      ${
+                        isActive
+                          ? "bg-indigo-50 text-indigo-700 border border-indigo-100"
+                          : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                      }
+                    `}
+                  >
+                    <Icon size={18} />
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <hr className="border-slate-100" />
+
+            {/* Mobile User Info & Logout */}
+            <div className="flex items-center justify-between">
+              {user && (
+                <div className="flex items-center gap-2 text-sm text-slate-600">
+                  <User2 size={16} />
+                  <span className="truncate max-w-[200px]">{user.email}</span>
+                </div>
+              )}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors"
+              >
+                <LogOut size={16} />
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -1,4 +1,7 @@
 import ContactCard from "@/components/ContactCard";
+import { getActiveAddons } from "@/lib/firebase/addons";
+import { getAllFaqs } from "@/lib/firebase/faq";
+import { getAllPricing } from "@/lib/firebase/pricing";
 import {
   CheckCircle2,
   Sparkles,
@@ -8,7 +11,18 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-const PricingPage = () => {
+const iconMap: Record<string, any> = {
+  sparkles: Sparkles,
+  clock: Clock,
+  hourglass: Hourglass,
+  sticker: Sticker,
+};
+
+const PricingPage = async () => {
+  const packages = await getAllPricing();
+  const faqs = await getAllFaqs();
+  const addons = await getActiveAddons();
+
   return (
     <main className="min-h-screen w-full flex items-center justify-center  dark:bg-background-dark transition-colors duration-300">
       <div className="w-full max-w-5xl px-4 pb-12 md:pb-8 flex flex-col items-center">
@@ -27,7 +41,7 @@ const PricingPage = () => {
             <div className="relative z-10 max-w-3xl flex flex-col gap-5">
               <h1 className="text-text-primary dark:text-white text-5xl md:text-6xl lg:text-7xl font-black tracking-tight">
                 Memories worth{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-gold">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent-gold">
                   framing.
                 </span>
               </h1>
@@ -41,51 +55,11 @@ const PricingPage = () => {
         {/* PRICING GRID */}
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
-            {[
-              {
-                title: "The Starter",
-                price: "$500",
-                button: "Book Starter",
-                accent: "text-accent-gold",
-                items: [
-                  "2 Hours of Service",
-                  "Digital Only Sharing",
-                  "Standard Backdrop",
-                  "Online Gallery",
-                ],
-              },
-              {
-                title: "The Party",
-                price: "$750",
-                button: "Book Party",
-                highlight: true,
-                accent: "text-primary",
-                items: [
-                  "3 Hours of Service",
-                  "Unlimited 4x6 Prints",
-                  "Premium Props Table",
-                  "On-site Attendant",
-                  "Text & Email Sharing",
-                ],
-              },
-              {
-                title: "The Gala",
-                price: "$1100",
-                button: "Book Gala",
-                accent: "text-accent-gold",
-                items: [
-                  "4 Hours of Service",
-                  "Glam Filter Enabled",
-                  "Custom Print Overlay",
-                  "Luxury Guestbook",
-                  "VIP Red Carpet",
-                ],
-              },
-            ].map((plan, i) => (
+            {packages.map((plan, i) => (
               <div
-                key={i}
+                key={plan.id}
                 className={`flex flex-col gap-6 rounded-3xl p-6 lg:p-8 bg-white dark:bg-background-card-dark transition-all border ${
-                  plan.highlight
+                  i === 1
                     ? "border-2 border-accent-gold shadow-soft dark:shadow-soft-dark"
                     : "border-white/40 dark:border-white/5 shadow-card dark:shadow-card-dark hover:-translate-y-1"
                 }`}
@@ -95,19 +69,21 @@ const PricingPage = () => {
                     {plan.title}
                   </h3>
                   <div className="mt-4 text-5xl font-black text-text-primary dark:text-white">
-                    {plan.price}
+                    ${plan.price}
                   </div>
                 </div>
 
                 <button className="h-12 w-full rounded-full bg-primary text-white font-bold">
-                  {plan.button}
+                  Book Now
                 </button>
 
                 <ul className="flex flex-col gap-4 pt-4 border-t border-white/40 dark:border-white/10">
-                  {plan.items.map((item, j) => (
+                  {plan.features.map((item, j) => (
                     <li key={j} className="flex gap-3 items-start">
                       <CheckCircle2
-                        className={`w-5 h-5 ${plan.accent} shrink-0 mt-0.5`}
+                        className={`w-5 h-5 ${
+                          i === 1 ? "text-primary" : "text-accent-gold"
+                        } shrink-0 mt-0.5`}
                       />
                       <span className="text-sm text-text-secondary dark:text-text-secondary-dark">
                         {item}
@@ -127,24 +103,20 @@ const PricingPage = () => {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: "Glam Filter", price: "+$150", icon: Sparkles },
-              { name: "Extra Hour", price: "+$200/hr", icon: Clock },
-              { name: "Idle Time", price: "+$75/hr", icon: Hourglass },
-              { name: "Magnetic Prints", price: "+$100", icon: Sticker },
-            ].map((a, i) => {
-              const Icon = a.icon;
+            {addons.map((a) => {
+              const Icon = iconMap[a.icon] || Sparkles;
+
               return (
                 <div
-                  key={i}
+                  key={a.id}
                   className="flex flex-col items-center justify-center p-6 gap-3 rounded-2xl border border-white/40 dark:border-white/5 bg-white dark:bg-background-card-dark shadow-card dark:shadow-card-dark"
                 >
                   <Icon className="w-10 h-10 text-primary" />
                   <h3 className="font-bold text-center text-text-primary dark:text-white">
-                    {a.name}
+                    {a.title}
                   </h3>
                   <span className="text-xs font-bold text-text-secondary dark:text-text-secondary-dark">
-                    {a.price}
+                    {a.priceLabel}
                   </span>
                 </div>
               );
@@ -158,30 +130,17 @@ const PricingPage = () => {
             Frequently Asked Questions
           </h2>
 
-          {[
-            {
-              q: "Do you travel outside of Toronto?",
-              a: "Yes. GTA coverage. Travel fees may apply.",
-            },
-            {
-              q: "How much space do you need?",
-              a: "Ideally 10x10 feet. We can adapt if needed.",
-            },
-            {
-              q: "Can I customize the print layout?",
-              a: "Yes. Fully custom templates included.",
-            },
-          ].map((f, i) => (
+          {faqs.map((f, i) => (
             <details
-              key={i}
+              key={f.id}
               className="group bg-white dark:bg-background-card-dark rounded-2xl border border-white/40 dark:border-white/5 mb-4 shadow-card dark:shadow-card-dark"
             >
               <summary className="flex justify-between items-center p-6 cursor-pointer font-bold text-text-primary dark:text-white">
-                {f.q}
+                {f.question}
                 <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
               </summary>
               <div className="px-6 pb-6 text-text-secondary dark:text-text-secondary-dark">
-                {f.a}
+                {f.answer}
               </div>
             </details>
           ))}

@@ -25,11 +25,23 @@ export default function AdminNavbar() {
         <strong className="font-semibold">SmilinShack CMS</strong>
 
         <div className="ml-5 flex gap-3">
-          <Link href="/admin/pages" className="hover:underline">
-            Pages
-          </Link>
           <Link href="/admin/blog" className="hover:underline">
             Blog
+          </Link>
+          <Link href="/admin/quotes" className="hover:underline">
+            Quotes
+          </Link>
+          <Link href="/admin/services" className="hover:underline">
+            Services
+          </Link>{" "}
+          <Link href="/admin/pricing" className="hover:underline">
+            Pricing
+          </Link>{" "}
+          <Link href="/admin/addons" className="hover:underline">
+            Addons
+          </Link>
+          <Link href="/admin/faqs" className="hover:underline">
+            Faqs
           </Link>
         </div>
       </div>

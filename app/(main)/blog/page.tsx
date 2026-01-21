@@ -29,7 +29,7 @@ export default async function BlogPage() {
                       className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                       style={{ backgroundImage: `url("${featured.imageUrl}")` }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background-surface dark:from-dark-background-base via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-background-surface/90 dark:lg:to-dark-background-base/90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background-surface dark:from-dark-background-base via-transparent to-transparent lg:bg-linear-to-r lg:from-transparent lg:to-background-surface/90 dark:lg:to-dark-background-base/90" />
                   </div>
 
                   <div className="flex flex-1 flex-col justify-center gap-6 p-6 lg:p-12 z-10 relative">

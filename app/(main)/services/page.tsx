@@ -1,4 +1,5 @@
 import ContactCard from "@/components/ContactCard";
+import { getActiveServices } from "@/lib/firebase/services";
 import {
   Camera,
   Sparkles,
@@ -9,9 +10,11 @@ import {
   Wallpaper,
   Layers3,
 } from "lucide-react";
+import Link from "next/link";
 
-const ServicesPage = () => {
-  const services = [
+const ServicesPage = async () => {
+  const services = await getActiveServices();
+  const servicess = [
     {
       title: "The Open Air Booth",
       price: 599,
@@ -81,43 +84,40 @@ const ServicesPage = () => {
 
         <div className="flex flex-col gap-8 mb-12">
           {services.map((s, i) => {
-            const Icon = s.icon;
+            const Icon = Sparkles;
+            const reverse = i % 2 === 1;
 
             return (
               <div
-                key={i}
+                key={s.id || i}
                 className="group relative bg-white dark:bg-background-card-dark rounded-lg p-4 shadow-card dark:shadow-card-dark border border-white dark:border-white/5 transition-all duration-300"
               >
                 <div
                   className={`flex flex-col ${
-                    s.reverse ? "md:flex-row-reverse" : "md:flex-row"
+                    reverse ? "md:flex-row-reverse" : "md:flex-row"
                   } gap-6 md:gap-8 items-stretch`}
                 >
                   <div
                     className="w-full md:w-5/12 aspect-video md:aspect-auto bg-center bg-no-repeat bg-cover rounded-lg overflow-hidden relative"
-                    style={{ backgroundImage: `url("${s.image}")` }}
+                    style={{ backgroundImage: `url("${s.imageUrl}")` }}
                   >
                     <div className="absolute inset-0 bg-secondary/10 mix-blend-overlay group-hover:bg-transparent transition-colors" />
 
-                    {s.badge && (
-                      <div
-                        className={`absolute top-4 ${
-                          s.badgePos === "right" ? "right-4" : "left-4"
-                        } bg-white/90 dark:bg-background-card-dark/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-white/40 dark:border-white/10 shadow-sm`}
-                      >
-                        {s.badge}
+                    {s.popular && (
+                      <div className="absolute top-4 left-4 bg-white/90 dark:bg-background-card-dark/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-white/40 dark:border-white/10 shadow-sm">
+                        Most Popular
                       </div>
                     )}
                   </div>
 
                   <div
                     className={`flex-1 flex flex-col justify-center py-2 md:py-6 ${
-                      s.reverse ? "pl-4 text-left md:text-right" : "pr-4"
+                      reverse ? "pl-4 text-left md:text-right" : "pr-4"
                     }`}
                   >
                     <div
                       className={`flex ${
-                        s.reverse ? "flex-row-reverse md:flex-row" : ""
+                        reverse ? "flex-row-reverse md:flex-row" : ""
                       } justify-between items-start mb-2`}
                     >
                       <h3 className="text-2xl font-bold text-text-primary dark:text-white transition-colors">
@@ -127,15 +127,15 @@ const ServicesPage = () => {
                     </div>
 
                     <p className="text-text-secondary dark:text-text-secondary-dark text-base leading-relaxed mb-6">
-                      {s.desc}
+                      {s.subtitle}
                     </p>
 
                     <div
                       className={`flex flex-wrap gap-2 mb-8 ${
-                        s.reverse ? "justify-start md:justify-end" : ""
+                        reverse ? "justify-start md:justify-end" : ""
                       }`}
                     >
-                      {s.features.map((f, j) => (
+                      {s.features.slice(0, 3).map((f, j) => (
                         <span
                           key={j}
                           className="px-3 py-1 bg-white/60 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-full text-xs font-bold text-secondary dark:text-primary"
@@ -147,7 +147,7 @@ const ServicesPage = () => {
 
                     <div
                       className={`mt-auto flex items-center justify-between pt-4 border-t border-white/40 dark:border-white/10 ${
-                        s.reverse ? "md:flex-row-reverse" : ""
+                        reverse ? "md:flex-row-reverse" : ""
                       }`}
                     >
                       <span className="text-lg font-bold text-text-primary dark:text-white">
@@ -157,15 +157,16 @@ const ServicesPage = () => {
                         </span>
                       </span>
 
-                      <button
+                      <Link
+                        href={`/services/${s.id}`}
                         className={`flex items-center gap-2 text-secondary dark:text-white font-bold transition-all ${
-                          s.reverse ? "flex-row-reverse md:flex-row" : ""
+                          reverse ? "flex-row-reverse md:flex-row" : ""
                         }`}
                       >
-                        {s.reverse ? <ArrowLeft size={18} /> : null}
+                        {reverse ? <ArrowLeft size={18} /> : null}
                         View Details
-                        {!s.reverse ? <ArrowRight size={18} /> : null}
-                      </button>
+                        {!reverse ? <ArrowRight size={18} /> : null}
+                      </Link>
                     </div>
                   </div>
                 </div>

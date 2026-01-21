@@ -1,9 +1,12 @@
 import ContactCard from "@/components/ContactCard";
 import Testimonials from "@/components/Testimonials";
 import getGoogleReviews from "@/lib/googleReviews";
+import getGallery from "@/lib/instagramPosts";
+import { timeAgo } from "@/lib/utils";
 import {
   ArrowLeft,
   ArrowRight,
+  Calendar,
   GalleryHorizontal,
   MapPin,
   Star,
@@ -11,43 +14,13 @@ import {
 import Link from "next/link";
 
 export default async function Home() {
-  const gallery = [
-    {
-      title: "Neon Nights",
-      location: "Downtown Toronto",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBw0cwkbwFViXYO0m7fBG8Qevy7FwVewpAJIAzCeOUTC1AdbyHZ9w-lgDLzaYZWcw7f9eDPNmLTWW5sVrgyJkoOV2vOBgpqwfBdoDppBUxRE9gfMQSYgJ2dS5ghhUZf0WQyDcnsZ1OI7HKA6gSw8wOZjhbSufyIuj6QVT6FIyuljRIenDxZct7xnnSjs3NYpWN04RfBGw_ca5KqRszcMGwdM4o1okecFcxkZFa4wC4hFHu33j2fgNUWhz7U-0zFovUxq66MIg8AkwQ",
-      extraClass: "",
-    },
-    {
-      title: "Classic Wedding",
-      location: "Liberty Grand",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuC2tX_wROLaresGF5ZWVpu-9ZmitFE8q2ag-fgxBhxzygE_tJm3FZcUP4bqvSvw6BWzhIp3ZWpR5VOLvkiMlAk69cn2_NYC8vDeQTeeKU39qXngpV_cGTQLYtKn7NG_GEnv4RTWqqP0-psCeG6bVC56-Rc3Wk10NFS5PIKystbUfxa5IRBqAgtk0lt75sB6CUhpWmkPbEVmWQRjWGSDhOgOiJMfiHtjZwC6Tn0TVf-QcPVfqCQBPRGVdKFDRXO76-hXJOLzzhvrKes",
-      extraClass: "sm:mt-8",
-    },
-    {
-      title: "Engagement Party",
-      location: "Distillery District",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCr9cvKP67eqqLSBDgQMjzqQ5RfE8CAugNiPjZvV3jPx1BHdA9v7v-JPrOdQiDfV0FU3dT5gpzmcFkAQj15xQZ7AS3WEOwOSibFEbC9YSgM4w7OBYLUEo0nGb2XqA-0k-tgitDXF2LONxHH55gAt-fLUQ2FFYxRT9dan98UhrII9LvDg0KoulansTzJLVcJWzAfGrGySZnosAQg-UgcjG9587DZ9ikBV4yH_K7BosFSOVNi_qAdENOLBzb80yyP09UKWdwgakQUve0",
-      extraClass: "md:mt-0 sm:mt-8",
-    },
-    {
-      title: "Summer Festival",
-      location: "High Park",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCZSQ0-6u6uhIzhZX7Xwgq54A-1oEDOca-TJ90tu5PXh1cmw1OGIO8HlyMlYU1pd_di6CfpdsPzr0GlK7enGTeVapgc6ZK_qSrcjkY_TfgY1R5kXVQNfac9Z4NKCT_HN3F_hALJdK4raikbMpLHGG4fqOmPY75HeHqfKMEYD2Nry_UWT2V0Xrxk-tYkRWerOKzkeB-imLaQSbIxdPThvJOqR_a5r2dYQHCZi0THKB2V8cLxisp97TgN2xXJI5yAHNYBlk5ZrUt0BHE",
-      extraClass: "hidden sm:block md:hidden",
-    },
-  ];
-
+  const gallery = await getGallery(1);
   return (
     <div className="">
       <main className="flex flex-col items-center pb-10 px-4 sm:px-10">
         <div className="w-full max-w-[960px] flex flex-col gap-10">
           <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-background-card-dark border border-white/60 dark:border-white/5 shadow-soft dark:shadow-soft-dark transition-colors duration-300">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-pink-200 dark:via-primary/30 to-transparent" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-linear-to-r from-transparent via-pink-200 dark:via-primary/30 to-transparent" />
             <div className="flex flex-col lg:flex-row">
               <div className="flex flex-1 flex-col justify-center p-8 lg:p-12 xl:p-16 gap-6 z-10">
                 <div className="inline-flex w-fit items-center gap-2 rounded-full bg-pink-50 dark:bg-primary/10 border border-pink-100 dark:border-primary/20 px-4 py-1.5 text-xs font-bold text-primary dark:text-primary uppercase tracking-wide">
@@ -56,7 +29,7 @@ export default async function Home() {
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black leading-[1.1] tracking-tight text-text-primary dark:text-white">
                   Capture the{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-pink-400 to-secondary">
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-pink-400 to-secondary">
                     Fun
                   </span>{" "}
                   in Toronto
@@ -68,17 +41,17 @@ export default async function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mt-2">
                   <Link
-                    href="/contact"
+                    href="/services"
                     className="flex h-12 items-center justify-center rounded-full bg-secondary hover:bg-yellow-400 px-8 text-base font-bold text-text-primary shadow-lg shadow-yellow-500/20 transition-all hover:scale-105 active:scale-95"
                   >
-                    Check Availability
+                    Services
                   </Link>
                   <Link
                     href="/gallery"
                     className="flex h-12 items-center justify-center gap-2 rounded-full border-2 border-primary/20 dark:border-white/10 bg-transparent px-8 text-base font-bold text-primary dark:text-white hover:bg-primary/5 dark:hover:bg-white/5 transition-colors"
                   >
                     <GalleryHorizontal className=" " />
-                    View Gallery
+                    Gallery
                   </Link>
                 </div>
                 <div className="flex items-center gap-4 mt-4 text-sm text-text-secondary dark:text-text-secondary-dark">
@@ -150,34 +123,34 @@ export default async function Home() {
                   From intimate gatherings to grand galas
                 </p>
               </div>
-              <a
+              <Link
                 className="text-primary dark:text-primary font-bold text-sm hover:text-primary-hover transition-colors hover:underline"
-                href="#"
+                href="/gallery"
               >
                 View All
-              </a>
+              </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {gallery.map((item, i) => (
+              {gallery.slice(0, 3).map((item, i) => (
                 <div
                   key={i}
-                  className={`group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer border border-white dark:border-white/5 shadow-card dark:shadow-card-dark bg-white dark:bg-background-card-dark ${item.extraClass}`}
+                  className={`group relative aspect-[4/5] overflow-hidden rounded-2xl cursor-pointer border border-white dark:border-white/5 shadow-card dark:shadow-card-dark bg-white dark:bg-background-card-dark`}
                 >
                   <div
                     className="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url("${item.image}")` }}
+                    style={{ backgroundImage: `url("${item.media_url}")` }}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 transition-opacity duration-300" />
 
                   <div className="absolute bottom-0 left-0 p-6 text-white w-full">
                     <div className="transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                      <p className="text-xl font-display font-bold mb-1">
-                        {item.title}
+                      <p className="text-xl font-display line-clamp-1 font-bold mb-1">
+                        {item.caption}
                       </p>
                       <div className="flex items-center gap-1 text-secondary text-sm font-medium">
-                        <MapPin className="  text-[16px]" />
-                        <span>{item.location}</span>
+                        <Calendar className="  text-[16px]" />
+                        <span>{timeAgo(item.timestamp)}</span>
                       </div>
                     </div>
                   </div>

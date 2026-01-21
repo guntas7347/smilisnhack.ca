@@ -61,16 +61,14 @@ export default function AdminBlogPage() {
     load();
   }, []);
 
-  // Helper to format firebase timestamp safely
-  const formatDate = (dateObj: any) => {
-    if (!dateObj) return "-";
-    if (dateObj.toDate)
-      return dateObj.toDate().toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      });
-    return new Date(dateObj).toLocaleDateString();
+  const formatDate = (ms: number | null | undefined) => {
+    if (!ms) return "-";
+
+    return new Date(ms).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
   };
 
   return (

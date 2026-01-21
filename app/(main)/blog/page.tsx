@@ -88,7 +88,9 @@ export default async function BlogPage() {
                       <div className="flex items-center gap-2 text-xs text-text-secondary">
                         <Calendar className="w-4 h-4" />
                         <span>
-                          {p.createdAt?.toDate?.().toLocaleDateString() ?? ""}
+                          {p.createdAt
+                            ? new Date(p.createdAt).toLocaleDateString()
+                            : ""}
                         </span>
                       </div>
 

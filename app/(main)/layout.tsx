@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export const revalidate = 60 * 60 * 24;
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://smilinshack.com"),
   title:

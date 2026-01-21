@@ -1,16 +1,8 @@
 import ContactCard from "@/components/ContactCard";
 import Testimonials from "@/components/Testimonials";
-import getGoogleReviews from "@/lib/googleReviews";
 import getGallery from "@/lib/instagramPosts";
 import { timeAgo } from "@/lib/utils";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Calendar,
-  GalleryHorizontal,
-  MapPin,
-  Star,
-} from "lucide-react";
+import { Calendar, GalleryHorizontal, MapPin, Star } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {

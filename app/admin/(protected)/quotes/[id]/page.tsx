@@ -23,8 +23,16 @@ export default async function QuoteDetailPage({
 
   if (!quote) return notFound();
 
-  // Helper for dates
-  const formatDate = (d: any) =>
+  const formatDate = (ms: any) => {
+    if (!ms) return "-";
+
+    return new Date(ms).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+  const formatTime = (d: any) =>
     new Date(d).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
@@ -131,7 +139,9 @@ export default async function QuoteDetailPage({
                   <p className="text-xs font-medium text-gray-500 uppercase">
                     Target Date
                   </p>
-                  <p className="text-gray-900 font-medium">{quote.date}</p>
+                  <p className="text-gray-900 font-medium">
+                    {formatDate(quote.date)}
+                  </p>
                 </div>
               </div>
 
@@ -142,7 +152,7 @@ export default async function QuoteDetailPage({
                     Request Received
                   </p>
                   <p className="text-gray-900 text-sm">
-                    {formatDate(quote.createdAt)}
+                    {formatTime(quote.createdAt)}
                   </p>
                 </div>
               </div>

@@ -1,3 +1,5 @@
+"use server";
+
 import {
   collection,
   addDoc,
@@ -14,6 +16,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { revalidatePath } from "next/cache";
 
 export interface ServicePackage {
   id?: string;
@@ -25,29 +28,44 @@ export interface ServicePackage {
   eventsCount: number;
   features: string[];
   active: boolean;
-  createdAt?: any;
+  createdAt?: number | null; // normalized
   imageUrl: string;
 }
-
-/* ================================
-   Collection ref
-================================ */
 
 const COL = "packages";
 
 /* ================================
-   API
+   Normalizer
+================================ */
+
+function normalizeService(id: string, data: any): ServicePackage {
+  return {
+    id,
+    title: data.title,
+    subtitle: data.subtitle,
+    price: data.price,
+    duration: data.duration,
+    popular: data.popular,
+    eventsCount: data.eventsCount,
+    features: data.features,
+    active: data.active,
+    imageUrl: data.imageUrl,
+    createdAt: data.createdAt?.toMillis?.() ?? null,
+  };
+}
+
+/* ================================
+   Readers
 ================================ */
 
 // Get all services (admin)
 export async function getAllServices(): Promise<ServicePackage[]> {
   const snap = await getDocs(collection(db, COL));
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...(d.data() as Omit<ServicePackage, "id">),
-  }));
+  return snap.docs.map((d) => normalizeService(d.id, d.data()));
 }
-export async function getServicesPage(pageSize = 20, cursor?: any) {
+
+// Paginated
+export async function getServicesPage(pageSize = 20, cursor?: number | null) {
   let q;
 
   if (cursor) {
@@ -67,45 +85,36 @@ export async function getServicesPage(pageSize = 20, cursor?: any) {
 
   const snap = await getDocs(q);
 
-  const items = snap.docs.map((d) => ({
-    id: d.id,
-    ...(d.data() as any),
-  }));
+  const items = snap.docs.map((d) => normalizeService(d.id, d.data()));
 
-  const lastDoc = snap.docs[snap.docs.length - 1];
+  const last = items[items.length - 1];
 
   return {
     items,
-    lastDoc: lastDoc || null,
+    nextCursor: last?.createdAt ?? null,
     hasMore: snap.docs.length === pageSize,
   };
 }
 
-// Get only active services (public site)
+// Get only active services (public)
 export async function getActiveServices(): Promise<ServicePackage[]> {
   const q = query(collection(db, COL), where("active", "==", true));
   const snap = await getDocs(q);
-
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...(d.data() as Omit<ServicePackage, "id">),
-  }));
+  return snap.docs.map((d) => normalizeService(d.id, d.data()));
 }
 
-// Get one service by id
+// Get one service
 export async function getServiceById(
   id: string,
 ): Promise<ServicePackage | null> {
-  const ref = doc(db, COL, id);
-  const snap = await getDoc(ref);
-
+  const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
-
-  return {
-    id: snap.id,
-    ...(snap.data() as Omit<ServicePackage, "id">),
-  };
+  return normalizeService(snap.id, snap.data());
 }
+
+/* ================================
+   Mutations
+================================ */
 
 // Create
 export async function createService(data: ServicePackage) {
@@ -115,6 +124,9 @@ export async function createService(data: ServicePackage) {
   };
 
   const docRef = await addDoc(collection(db, COL), payload);
+
+  revalidatePath("/services");
+
   return docRef.id;
 }
 
@@ -122,10 +134,14 @@ export async function createService(data: ServicePackage) {
 export async function updateService(id: string, data: Partial<ServicePackage>) {
   const ref = doc(db, COL, id);
   await updateDoc(ref, data);
+
+  revalidatePath("/services");
 }
 
 // Delete
 export async function deleteService(id: string) {
   const ref = doc(db, COL, id);
   await deleteDoc(ref);
+
+  revalidatePath("/services");
 }

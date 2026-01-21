@@ -9,30 +9,32 @@ import {
   updateDoc,
   deleteDoc,
   serverTimestamp,
-  orderBy,
-  query,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { revalidatePath } from "next/cache";
 
-export interface FAQItem {
+export interface Addon {
   id?: string;
-  question: string;
-  answer: string;
+  title: string;
+  priceLabel: string;
+  icon: string;
+  active: boolean;
   createdAt: number | null; // normalized
 }
 
-const COL = "faqs";
+const COL = "addons";
 
 /* ================================
    Normalizer
 ================================ */
 
-function normalizeFaq(id: string, data: any): FAQItem {
+function normalizeAddon(id: string, data: any): Addon {
   return {
     id,
-    question: data.question,
-    answer: data.answer,
+    title: data.title,
+    priceLabel: data.priceLabel,
+    icon: data.icon,
+    active: data.active,
     createdAt: data.createdAt?.toMillis?.() ?? null,
   };
 }
@@ -41,18 +43,25 @@ function normalizeFaq(id: string, data: any): FAQItem {
    Readers
 ================================ */
 
-// List all
-export async function getAllFaqs() {
-  const q = query(collection(db, COL), orderBy("createdAt", "desc"));
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => normalizeFaq(d.id, d.data()));
+// List all (admin)
+export async function getAllAddons() {
+  const snap = await getDocs(collection(db, COL));
+  return snap.docs.map((d) => normalizeAddon(d.id, d.data()));
+}
+
+// List active (public)
+export async function getActiveAddons() {
+  const snap = await getDocs(collection(db, COL));
+  return snap.docs
+    .map((d) => normalizeAddon(d.id, d.data()))
+    .filter((a) => a.active);
 }
 
 // Get one
-export async function getFaqById(id: string) {
+export async function getAddonById(id: string) {
   const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
-  return normalizeFaq(snap.id, snap.data());
+  return normalizeAddon(snap.id, snap.data());
 }
 
 /* ================================
@@ -60,7 +69,7 @@ export async function getFaqById(id: string) {
 ================================ */
 
 // Create
-export async function createFaq(data: Omit<FAQItem, "id" | "createdAt">) {
+export async function createAddon(data: Omit<Addon, "id" | "createdAt">) {
   const payload = {
     ...data,
     createdAt: serverTimestamp(),
@@ -74,9 +83,9 @@ export async function createFaq(data: Omit<FAQItem, "id" | "createdAt">) {
 }
 
 // Update
-export async function updateFaq(
+export async function updateAddon(
   id: string,
-  data: Partial<Omit<FAQItem, "id" | "createdAt">>,
+  data: Partial<Omit<Addon, "id" | "createdAt">>,
 ) {
   const ref = doc(db, COL, id);
   await updateDoc(ref, data);
@@ -85,7 +94,7 @@ export async function updateFaq(
 }
 
 // Delete
-export async function deleteFaq(id: string) {
+export async function deleteAddon(id: string) {
   const ref = doc(db, COL, id);
   await deleteDoc(ref);
 

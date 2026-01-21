@@ -5,7 +5,7 @@ const getGoogleReviews = async () => {
 
     const res = await fetch(
       `https://serpapi.com/search.json?engine=google_maps_reviews&data_id=${dataId}&hl=en&api_key=${apiKey}`,
-      { next: { revalidate: 60 * 60 * 24 } },
+      { next: { revalidate: 60 * 60 * 24 * 7 } },
     );
 
     const json = await res.json();

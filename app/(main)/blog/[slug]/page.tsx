@@ -20,7 +20,9 @@ export default async function IndividualBlogPage({ params }: any) {
             </h1>
 
             <div className="text-sm text-gray-500">
-              {post.createdAt?.toDate?.().toLocaleDateString() ?? ""}
+              {post.createdAt
+                ? new Date(post.createdAt).toLocaleDateString()
+                : ""}
             </div>
           </header>
 

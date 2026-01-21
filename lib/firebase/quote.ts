@@ -1,3 +1,5 @@
+"use server";
+
 import {
   collection,
   addDoc,
@@ -23,33 +25,55 @@ export type Quote = {
 
 const COL = "quotes";
 
+/* ================================
+   Create
+================================ */
+
 export async function submitQuote(data: Omit<Quote, "createdAt">) {
   const payload: Quote = {
     ...data,
-    createdAt: Date.now(),
+    createdAt: Date.now(), // JSON-safe
   };
 
   const ref = await addDoc(collection(db, COL), payload);
+
   return ref.id;
 }
+
+/* ================================
+   Read
+================================ */
 
 export async function getQuote(id: string) {
   const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
 
-  return { id: snap.id, ...snap.data() } as Quote & { id: string };
+  const data = snap.data() as Quote;
+
+  return {
+    id: snap.id,
+    ...data,
+  };
 }
 
 export async function getAllQuotes() {
   const q = query(collection(db, COL), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
 
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...(d.data() as Quote),
-  }));
+  return snap.docs.map((d) => {
+    const data = d.data() as Quote;
+    return {
+      id: d.id,
+      ...data,
+    };
+  });
 }
+
+/* ================================
+   Delete
+================================ */
+
 export async function deleteQuote(id: string) {
-  const ref = doc(db, "quotes", id);
+  const ref = doc(db, COL, id);
   await deleteDoc(ref);
 }

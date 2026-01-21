@@ -13,10 +13,11 @@ import {
 export default async function QuotesPage() {
   const quotes = await getAllQuotes();
 
-  // Helper to format timestamps nicely
-  const formatCreated = (dateInput: any) => {
-    if (!dateInput) return "-";
-    const date = new Date(dateInput);
+  const formatCreated = (ms: number | null | undefined) => {
+    if (!ms) return "-";
+
+    const date = new Date(ms);
+
     return date.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",

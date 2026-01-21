@@ -2,6 +2,8 @@ export async function uploadToCloudinaryUnsigned(file: File): Promise<string> {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!;
   const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UNSIGNED_PRESET!;
 
+  console.log(cloudName, preset);
+
   const form = new FormData();
   form.append("file", file);
   form.append("upload_preset", preset);

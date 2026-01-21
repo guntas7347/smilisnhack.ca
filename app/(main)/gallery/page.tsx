@@ -1,6 +1,7 @@
 import ContactCard from "@/components/ContactCard";
 import getGallery from "@/lib/instagramPosts";
-import { Loader } from "lucide-react";
+import { timeAgo } from "@/lib/utils";
+import { Calendar, Loader } from "lucide-react";
 
 type GalleryImage = {
   id: string;
@@ -61,23 +62,11 @@ const GalleryPage = async () => {
             </div>
           </div>
 
-          {/* FILTER BAR */}
           <div className="sticky top-16 z-40 -mx-4  dark:bg-background-dark/95 py-4 px-4 mb-6 border-b border-white/40 dark:border-white/5 backdrop-blur-sm">
-            <div className="flex gap-3 overflow-x-auto no-scrollbar">
-              {["All Events", "Weddings", "Corporate", "Parties", "Setups"].map(
-                (f, i) => (
-                  <button
-                    key={f}
-                    className={`h-9 shrink-0 rounded-full px-5 text-sm font-bold transition-colors ${
-                      i === 0
-                        ? "bg-primary text-white"
-                        : "bg-white dark:bg-background-card-dark border border-white/40 dark:border-white/10 text-text-primary dark:text-white hover:bg-pink-50 dark:hover:bg-white/5"
-                    }`}
-                  >
-                    {f}
-                  </button>
-                ),
-              )}
+            <div className="flex justify-center items-center gap-3 overflow-x-auto no-scrollbar">
+              <span className="h-9 shrink-0 items-center flex justify-center rounded-full px-5 text-sm font-bold transition-colors bg-primary text-white">
+                All Events
+              </span>
             </div>
           </div>
 
@@ -95,8 +84,14 @@ const GalleryPage = async () => {
                   alt={img.caption || "Gallery image"}
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-95 hover:opacity-100"
                 />
-
-                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors" />
+                <div className="absolute bottom-0 left-0 p-6 text-white w-full">
+                  <div className="transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
+                    <div className="flex items-center gap-1 text-secondary text-sm font-medium">
+                      <Calendar className="  text-[16px]" />
+                      <span>{timeAgo(img.timestamp)}</span>
+                    </div>
+                  </div>
+                </div>{" "}
               </a>
             ))}
           </div>

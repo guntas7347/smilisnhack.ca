@@ -6,6 +6,7 @@ import {
   doc,
   query,
   orderBy,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -17,6 +18,7 @@ export type Quote = {
   eventType: string;
   message: string;
   createdAt: number;
+  phone: string;
 };
 
 const COL = "quotes";
@@ -46,4 +48,8 @@ export async function getAllQuotes() {
     id: d.id,
     ...(d.data() as Quote),
   }));
+}
+export async function deleteQuote(id: string) {
+  const ref = doc(db, "quotes", id);
+  await deleteDoc(ref);
 }

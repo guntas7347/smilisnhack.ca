@@ -56,6 +56,7 @@ const QuoteForm = () => {
               onChange={onChange}
               className="h-14 px-5 rounded-2xl bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white"
               placeholder="First Name"
+              required
             />
             <input
               name="lastName"
@@ -70,6 +71,8 @@ const QuoteForm = () => {
             <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/60" />
             <input
               name="email"
+              type="email"
+              required
               value={form.email}
               onChange={onChange}
               className="h-14 pl-12 pr-5 w-full rounded-2xl bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white"
@@ -84,6 +87,7 @@ const QuoteForm = () => {
               onChange={onChange}
               className="h-14 pl-12 pr-5 w-full rounded-2xl bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white"
               placeholder="Phone"
+              required
             />
           </div>
 
@@ -95,6 +99,7 @@ const QuoteForm = () => {
                 name="date"
                 value={form.date}
                 onChange={onChange}
+                required
                 className="h-14 pl-12 pr-5 w-full rounded-2xl bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white"
               />
             </div>
@@ -105,6 +110,7 @@ const QuoteForm = () => {
                 name="eventType"
                 value={form.eventType}
                 onChange={onChange}
+                required
                 className="h-14 pl-5 pr-10 w-full rounded-2xl bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white appearance-none"
               >
                 <option className="text-black">Wedding</option>
@@ -122,6 +128,7 @@ const QuoteForm = () => {
             className="w-full rounded-2xl p-5 bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white resize-none"
             rows={4}
             placeholder="Tell us about your event..."
+            required
           />
 
           <button

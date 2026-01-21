@@ -116,6 +116,8 @@ const QuoteForm = () => {
                 <option className="text-black">Wedding</option>
                 <option className="text-black">Birthday</option>
                 <option className="text-black">Corporate</option>
+                <option className="text-black">School</option>
+                <option className="text-black">Baby Shower</option>
                 <option className="text-black">Other</option>
               </select>
             </div>
@@ -128,7 +130,6 @@ const QuoteForm = () => {
             className="w-full rounded-2xl p-5 bg-white/70 dark:bg-white/5 border border-white/40 dark:border-white/10 text-text-primary dark:text-white resize-none"
             rows={4}
             placeholder="Tell us about your event..."
-            required
           />
 
           <button

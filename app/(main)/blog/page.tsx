@@ -3,8 +3,6 @@ import { getFeaturedPost, getPublishedPosts } from "@/lib/firebase/posts";
 import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 
-const categories = ["All Posts", "Events", "Tips & Tricks", "News", "Weddings"];
-
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
   const featured = await getFeaturedPost();
@@ -60,20 +58,11 @@ export default async function BlogPage() {
         )}
 
         {/* CATEGORY BAR (UI ONLY) */}
-        <section className="sticky top-[73px] z-40 bg-background-base/95 backdrop-blur-sm py-4 border-b w-full">
+        <section className="sticky flex justify-center items-center top-[73px] z-40 bg-background-base/95 backdrop-blur-sm py-4 border-b w-full">
           <div className="mx-auto max-w-[1200px] flex gap-3 overflow-x-auto pb-2">
-            {categories.map((c, i) => (
-              <button
-                key={i}
-                className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-bold transition-all ${
-                  i === 0
-                    ? "bg-accent-pink text-white"
-                    : "bg-background-surface border hover:border-accent-pink hover:text-accent-pink"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+            <span className="shrink-0 bg-accent-pink text-white rounded-full px-5 py-2.5 text-sm font-bold transition-all">
+              All Blogs
+            </span>
           </div>
         </section>
 

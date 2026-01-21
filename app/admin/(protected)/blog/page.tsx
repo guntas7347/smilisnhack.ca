@@ -65,13 +65,11 @@ export default function AdminBlogPage() {
   const formatDate = (dateObj: any) => {
     if (!dateObj) return "-";
     if (dateObj.toDate)
-      return dateObj
-        .toDate()
-        .toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        });
+      return dateObj.toDate().toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
     return new Date(dateObj).toLocaleDateString();
   };
 
@@ -209,7 +207,7 @@ export default function AdminBlogPage() {
 
                     {/* Actions */}
                     <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() =>
                             router.push(`/admin/blog/edit?slug=${p.slug}`)

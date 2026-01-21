@@ -21,20 +21,18 @@ export default function QuillEditor({ value, onChange }: Props) {
       modules: {
         toolbar: {
           container: [
-            ["bold"],
-            [{ header: [2, 3, false] }],
-            [{ list: "ordered" }, { list: "bullet" }],
-            ["clean"],
+            [{ size: ["small", false, "large", "huge"] }],
+            ["bold", "italic"],
           ],
         },
       },
-      formats: ["bold", "header", "list", "bullet", "image"],
+      formats: ["size", "bold", "italic"],
     });
 
     quill.current.on("text-change", () => {
       onChange(quill.current!.root.innerHTML);
     });
-  }, []);
+  }, [onChange]);
 
   useEffect(() => {
     if (!quill.current) return;
@@ -44,5 +42,5 @@ export default function QuillEditor({ value, onChange }: Props) {
     }
   }, [value]);
 
-  return <div className="border" ref={ref} />;
+  return <div className="border-none" ref={ref} />;
 }

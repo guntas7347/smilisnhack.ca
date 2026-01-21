@@ -13,11 +13,12 @@ const Testimonials = async () => {
           What Our Clients Say
         </h2>
         <div className="flex gap-3">
-          <button className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-background-card-dark hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary dark:hover:text-primary text-text-primary dark:text-white transition-colors shadow-sm">
-            <ArrowLeft className=" " />
+          <button className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-background-card-dark text-text-primary dark:text-white transition-colors shadow-sm">
+            <ArrowLeft />
           </button>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-text-primary hover:bg-yellow-400 transition-colors shadow-sm">
-            <ArrowRight className=" " />
+
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-text-primary transition-colors shadow-sm">
+            <ArrowRight />
           </button>
         </div>
       </div>

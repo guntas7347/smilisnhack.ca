@@ -162,6 +162,7 @@ export default function BlogEditorPage() {
             </label>
             <input
               type="text"
+              required
               placeholder="Enter a captivating title..."
               value={title}
               onChange={(e) => {
@@ -179,7 +180,6 @@ export default function BlogEditorPage() {
               <span>Content Editor</span>
             </div>
             <div className="flex-1 p-1">
-              {/* Ensure QuillEditor takes full height in its internal CSS if possible */}
               <QuillEditor value={content} onChange={setContent} />
             </div>
           </div>
@@ -247,6 +247,7 @@ export default function BlogEditorPage() {
                 Excerpt (Short Description)
               </label>
               <textarea
+                required
                 className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:ring-2 focus:ring-indigo-500 outline-none min-h-[100px] resize-none"
                 placeholder="A short summary for SEO and preview cards..."
                 value={excerpt}

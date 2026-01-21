@@ -12,45 +12,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+
 const ServicesPage = async () => {
   const services = await getActiveServices();
-  const servicess = [
-    {
-      title: "The Open Air Booth",
-      price: 599,
-      badge: "Most Popular",
-      badgePos: "left",
-      icon: Camera,
-      reverse: false,
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuA1rpy4cpOGuq8EqtKoKJGpnfoT8WylLaX0zCQcIztUy3VB7bx9ZiIjgGLp9oZsQZt6nk2Nby2UR8J0xxHGVn3IdvdZkdFBFBn-whHiA1KmeSlN0XO4NI6NniRzCQ-9H2-fbVm0nGm8YdBpv3OGdoI-5jJBcisOKy_lhPsMp3MzsRrWYKdlBEGHhowHTgIEyKgHYqXSnUMft1lU5WKS63aU06fFMwuBvaob3mlMhzWDrbcOTNtQx83K64s-76g783r8yHBe2PJ3W-I",
-      desc: "Sleek, modern, and fits anywhere. Our open-air design allows for large group shots and fits perfectly in tight spaces. Comes with professional lighting.",
-      features: ["Unlimited Prints", "Digital Sharing", "Standard Props"],
-    },
-    {
-      title: "The 360 Experience",
-      price: 899,
-      badge: "Trending",
-      badgePos: "right",
-      icon: Sparkles,
-      reverse: true,
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAvWzOO9rWAw-8vUhGUQMrquehq1Ds7LU6LzOFRJLjOZFsipz4x1M918Us3r3vti4byq7xQExH3X94UF5nk-9PsmTokY51aKI6kayZ2aWh-xtYFMtKdr-Zbq6WGSO9EvsKwaA5urBL9SNAgLfQVmFH9G8CJNPWv6fIpg0Z5fOgNJUSFrCodZSsGShRgTkA37V9U55rz2jAPPS4-rmxxKRxZI4krINSF3OcaLEg6jHMbqIBFiFY7usBWLpBz_4u6Xg6CKIRvDG2od6A",
-      desc: "Red carpet vibes. Capture 360-degree slow-motion videos that are instantly shareable. Perfect for high-energy parties and corporate activations.",
-      features: ["Slow Motion", "Music Overlay", "Instant Airdrop"],
-    },
-    {
-      title: "The Glam Booth",
-      price: 749,
-      badge: null,
-      icon: Wand2,
-      reverse: false,
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDB7Gz806YiCUdk3yQjNYBhcm8GfpQebukVJxTwF93EXFX7UA6IzYbE2spmEKD2ZSdvPYqCgrQn-BBjUHi3a9eVT8eDVoYUEPM_It46Z9WBGCnAgqL4sVJgiUMGNixwfGXaPvcCJTNzfZvk6D_V9ktRbushw9T1T1dztDMDmKqJzJ4ArfomFTLwEylCnRRNzYb2V4RhqQih9M7LibAECUn-YlZUMrXl0-vOk8261z02C90MSmFsr29qH9kIJFGwVBwXy6FOjLDpWSE",
-      desc: "Get that celebrity look with our Kardashian-style black & white beauty filter. High-contrast imagery that makes everyone look flawless.",
-      features: ["Beauty Filter", "4x6 Prints", "White Backdrop"],
-    },
-  ];
+ 
 
   const customizations = [
     {

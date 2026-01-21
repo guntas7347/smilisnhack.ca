@@ -1,7 +1,54 @@
+import type { Metadata } from "next";
 import { getPostBySlug } from "@/lib/firebase/posts";
 import { notFound } from "next/navigation";
 
-export default async function IndividualBlogPage({ params }: any) {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function  generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params; 
+  const post = await getPostBySlug(slug);
+
+  if (!post || !post.published) {
+    return {
+      title: "Not Found",
+    };
+  }
+
+  const title = post.title;
+  const description =
+    post.excerpt || "Read this article on SmilinShack.";
+
+  const url = `https://smilinshack.com/blog/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+      images: post.imageUrl
+        ? [{ url: post.imageUrl, width: 1200, height: 630 }]
+        : [{
+      url: "/icon.png",
+      width: 512,
+      height: 512,
+    }],
+      publishedTime: post.createdAt
+        ? new Date(post.createdAt).toISOString()
+        : undefined,
+    },
+  };
+}
+
+
+export default async function IndividualBlogPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 

@@ -4,49 +4,28 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://smilinshack.com"),
-  title:
-    "SmilinShack | Premium Photo Booth Rentals in Brampton & Greater Toronto Area",
+  title: "SmilinShack | Photo Booth Rental in Brampton & GTA",
   description:
-    "SmilinShack offers luxury photo booth experiences across Brampton, Toronto, and the GTA — including 360° booths, mirror booths, and instant print stations for weddings, parties, and corporate events.",
-  keywords: [
-    "photo booth rental Brampton",
-    "Toronto 360 photobooth",
-    "mirror photobooth GTA",
-    "event photography Ontario",
-    "wedding photobooth Toronto",
-    "corporate event photo booth",
-    "SmilinShack",
-  ],
-  authors: [{ name: "SmilinShack" }],
-  creator: "SmilinShack",
-  publisher: "SmilinShack",
+    "Rent a premium photo booth in Brampton and the GTA. 360 video booth, mirror booth, instant prints. Perfect for weddings, parties, and corporate events.",
+  alternates: {
+    canonical: "https://smilinshack.com/",
+  },
   openGraph: {
-    title: "SmilinShack | Premium Photo Booth Rentals in Brampton & GTA",
+    title: "SmilinShack | Photo Booth Rental in Brampton & GTA",
     description:
-      "Luxury photobooth rentals with instant prints, 360° video booths, and mirror experiences — perfect for weddings, birthdays, and corporate events.",
-    url: "https://smilinshack.com",
+      "Premium photo booth rentals in Brampton and the GTA. 360 booths, mirror booths, instant prints for weddings and events.",
+    url: "https://smilinshack.com/",
     siteName: "SmilinShack",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SmilinShack Photo Booth Setup",
-      },
-    ],
+    images: [{
+      url: "/icon.png",
+      width: 512,
+      height: 512,
+    }],
     locale: "en_CA",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "SmilinShack | Premium Photo Booth Rentals",
-    description:
-      "Make your event unforgettable with 360°, mirror, and instant-print photo booths from SmilinShack.",
-    images: ["/og-image.jpg"],
-  },
-  icons: { icon: "/logo-bg.png" },
 };
+
 
 export default function RootLayout({
   children,

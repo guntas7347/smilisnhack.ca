@@ -1,5 +1,10 @@
 import "./globals.css";
 
+
+export const metadata = {
+  metadataBase: new URL("https://smilinshack.com"),
+};
+
 export default function RootLayout({
   children,
 }: {

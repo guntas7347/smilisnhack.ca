@@ -2,6 +2,28 @@ import ContactCard from "@/components/ContactCard";
 import { getFeaturedPost, getPublishedPosts } from "@/lib/firebase/posts";
 import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SmilinShack Blog",
+  description:
+    "Learn everything about photo booths: ideas, tips, wedding guides, event planning advice, and rental tips from SmilinShack.",
+  alternates: {
+    canonical: "https://smilinshack.com/blog",
+  },
+  openGraph: {
+    title: "SmilinShack Blog",
+    description:
+      "Guides, tips, and ideas about photo booths for weddings, parties, and corporate events.",
+    url: "https://smilinshack.com/blog",
+    type: "website",
+    images: [{
+      url: "/icon.png",
+      width: 512,
+      height: 512,
+    }],
+  },
+};
 
 export default async function BlogPage() {
   const posts = await getPublishedPosts();

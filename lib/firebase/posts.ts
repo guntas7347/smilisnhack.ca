@@ -1,5 +1,3 @@
-"use server";
-
 import {
   collection,
   doc,
@@ -15,7 +13,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { revalidatePath } from "next/cache";
+import { revalidatePaths } from "../revalidatePath";
 
 export type Post = {
   slug: string;
@@ -65,15 +63,13 @@ export async function upsertPost(post: Post) {
     { merge: true },
   );
 
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${post.slug}`);
+  revalidatePaths(["/blog", `/blog/${post.slug}`]);
 }
 
 export async function deletePost(slug: string) {
   await deleteDoc(doc(db, "posts", slug));
 
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${slug}`);
+  revalidatePaths(["/blog", `/blog/${slug}`]);
 }
 
 /* ================================
@@ -125,5 +121,5 @@ export async function setFeaturedExclusive(slug: string) {
     });
   }
 
-  revalidatePath("/blog");
+  revalidatePaths(["/blog"]);
 }

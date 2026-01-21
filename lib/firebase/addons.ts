@@ -1,5 +1,3 @@
-"use server";
-
 import {
   collection,
   addDoc,
@@ -11,7 +9,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { revalidatePath } from "next/cache";
+import { revalidatePaths } from "../revalidatePath";
 
 export interface Addon {
   id?: string;
@@ -77,7 +75,7 @@ export async function createAddon(data: Omit<Addon, "id" | "createdAt">) {
 
   const ref = await addDoc(collection(db, COL), payload);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 
   return ref.id;
 }
@@ -90,7 +88,7 @@ export async function updateAddon(
   const ref = doc(db, COL, id);
   await updateDoc(ref, data);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 }
 
 // Delete
@@ -98,5 +96,5 @@ export async function deleteAddon(id: string) {
   const ref = doc(db, COL, id);
   await deleteDoc(ref);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 }

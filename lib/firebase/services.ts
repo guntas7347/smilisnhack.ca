@@ -1,5 +1,3 @@
-"use server";
-
 import {
   collection,
   addDoc,
@@ -16,7 +14,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { revalidatePath } from "next/cache";
+import { revalidatePaths } from "../revalidatePath";
 
 export interface ServicePackage {
   id?: string;
@@ -125,7 +123,7 @@ export async function createService(data: ServicePackage) {
 
   const docRef = await addDoc(collection(db, COL), payload);
 
-  revalidatePath("/services");
+  revalidatePaths(["/services"]);
 
   return docRef.id;
 }
@@ -135,7 +133,7 @@ export async function updateService(id: string, data: Partial<ServicePackage>) {
   const ref = doc(db, COL, id);
   await updateDoc(ref, data);
 
-  revalidatePath("/services");
+  revalidatePaths(["/services"]);
 }
 
 // Delete
@@ -143,5 +141,5 @@ export async function deleteService(id: string) {
   const ref = doc(db, COL, id);
   await deleteDoc(ref);
 
-  revalidatePath("/services");
+  revalidatePaths(["/services"]);
 }

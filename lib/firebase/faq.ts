@@ -1,5 +1,3 @@
-"use server";
-
 import {
   collection,
   addDoc,
@@ -13,7 +11,7 @@ import {
   query,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { revalidatePath } from "next/cache";
+import { revalidatePaths } from "../revalidatePath";
 
 export interface FAQItem {
   id?: string;
@@ -68,7 +66,7 @@ export async function createFaq(data: Omit<FAQItem, "id" | "createdAt">) {
 
   const ref = await addDoc(collection(db, COL), payload);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 
   return ref.id;
 }
@@ -81,7 +79,7 @@ export async function updateFaq(
   const ref = doc(db, COL, id);
   await updateDoc(ref, data);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 }
 
 // Delete
@@ -89,5 +87,5 @@ export async function deleteFaq(id: string) {
   const ref = doc(db, COL, id);
   await deleteDoc(ref);
 
-  revalidatePath("/pricing");
+  revalidatePaths(["/pricing"]);
 }

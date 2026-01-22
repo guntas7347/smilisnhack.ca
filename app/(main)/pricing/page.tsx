@@ -74,7 +74,7 @@ const PricingPage = async () => {
                   </div>
                 </div>
 
-                <Link href='/contact' className="h-12 w-full rounded-full bg-primary text-white font-bold">
+                <Link href='/contact' className="h-12 flex justify-center items-center w-full rounded-full bg-primary text-white font-bold">
                   Book Now
                 </Link>
 

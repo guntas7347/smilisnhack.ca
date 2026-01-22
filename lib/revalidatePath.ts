@@ -1,4 +1,3 @@
-// lib/revalidate.server.ts
 "use server";
 
 import { revalidatePath as rp } from "next/cache";

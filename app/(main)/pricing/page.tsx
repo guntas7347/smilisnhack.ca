@@ -10,6 +10,7 @@ import {
   Sticker,
   ChevronDown,
 } from "lucide-react";
+import Link from "next/link";
 
 const iconMap: Record<string, any> = {
   sparkles: Sparkles,
@@ -73,9 +74,9 @@ const PricingPage = async () => {
                   </div>
                 </div>
 
-                <button className="h-12 w-full rounded-full bg-primary text-white font-bold">
+                <Link href='/contact' className="h-12 w-full rounded-full bg-primary text-white font-bold">
                   Book Now
-                </button>
+                </Link>
 
                 <ul className="flex flex-col gap-4 pt-4 border-t border-white/40 dark:border-white/10">
                   {plan.features.map((item, j) => (

@@ -23,20 +23,7 @@ export type Quote = {
 
 const COL = "quotes";
 
-/* ================================
-   Create
-================================ */
 
-export async function submitQuote(data: Omit<Quote, "createdAt">) {
-  const payload: Quote = {
-    ...data,
-    createdAt: Date.now(), // JSON-safe
-  };
-
-  const ref = await addDoc(collection(db, COL), payload);
-
-  return ref.id;
-}
 
 /* ================================
    Read

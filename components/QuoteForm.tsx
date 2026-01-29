@@ -1,6 +1,6 @@
 "use client";
 
-import { submitQuote } from "@/lib/firebase/quote";
+import { submitQuote } from "@/lib/firebase/quotes.server";
 import { ArrowRight, Calendar, ChevronDown, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 

@@ -1,7 +1,14 @@
 "use client";
 
 import { submitQuote } from "@/lib/firebase/quotes.server";
-import { ArrowRight, Calendar, ChevronDown, Mail, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  Mail,
+  Phone,
+  Loader2,
+} from "lucide-react";
 import { useState } from "react";
 
 const QuoteForm = () => {
@@ -16,6 +23,7 @@ const QuoteForm = () => {
   };
 
   const [form, setForm] = useState(defaultForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onChange = (
     e: React.ChangeEvent<
@@ -29,11 +37,19 @@ const QuoteForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const payload = { ...form };
+    if (isSubmitting) return; // hard lock
 
-    await submitQuote(payload);
-    alert("Quote Submitted, We will reply shortly.");
-    setForm(defaultForm);
+    try {
+      setIsSubmitting(true);
+
+      const payload = { ...form };
+      await submitQuote(payload);
+
+      alert("Quote Submitted, We will reply shortly.");
+      setForm(defaultForm);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,6 +95,7 @@ const QuoteForm = () => {
               placeholder="Email"
             />
           </div>
+
           <div className="relative">
             <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/60" />
             <input
@@ -134,10 +151,17 @@ const QuoteForm = () => {
 
           <button
             type="submit"
-            className="w-full h-16 bg-linear-to-r from-primary to-secondary text-white text-lg font-black rounded-2xl flex items-center justify-center gap-3 hover:-translate-y-0.5 transition-all"
+            disabled={isSubmitting}
+            className="w-full h-16 bg-linear-to-r from-primary to-secondary text-white text-lg font-black rounded-2xl flex items-center justify-center gap-3 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Get a Quote
-            <ArrowRight className="w-6 h-6" />
+            {isSubmitting ? (
+              <Loader2 className="w-6 h-6 animate-spin" />
+            ) : (
+              <>
+                Get a Quote
+                <ArrowRight className="w-6 h-6" />
+              </>
+            )}
           </button>
         </form>
       </div>

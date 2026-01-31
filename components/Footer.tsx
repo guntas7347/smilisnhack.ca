@@ -14,7 +14,7 @@ const Footer = () => {
           />
           <span className="font-display font-bold text-lg">SmilinShack</span>
         </div>
-        <div className="flex gap-8 text-sm font-bold text-text-secondary dark:text-text-secondary-dark">
+        <div className="flex gap-8 md:flex-row flex-col text-sm font-bold text-text-secondary dark:text-text-secondary-dark">
           <a
             className="hover:text-primary dark:hover:text-secondary transition-colors"
             href="https://www.instagram.com/smilinshack"
@@ -26,6 +26,12 @@ const Footer = () => {
             href="https://www.facebook.com/share/1GNgwKRVr9"
           >
             Facebook
+          </a>
+          <a
+            className="hover:text-primary dark:hover:text-secondary transition-colors"
+            href="https://www.guntassandhu.com"
+          >
+            Developer
           </a>
         </div>
         <p className="text-sm text-text-secondary dark:text-text-secondary-dark font-medium">

@@ -30,6 +30,11 @@ export async function getToken(): Promise<TokenData> {
     throw new Error("Instagram token not found");
   }
 
+  console.log("Firebase check:", {
+    exists: snap.exists,
+    hasAccessToken: typeof snap.data()?.access_token === "string",
+    hasUpdatedAt: typeof snap.data()?.updated_at === "number",
+  });
   const data = snap.data();
 
   return {

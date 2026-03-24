@@ -12,6 +12,8 @@ type GalleryImage = {
   media_type?: string;
 };
 
+export const dynamic = "force-dynamic";
+
 const GalleryPage = async () => {
   const images: GalleryImage[] = await getGallery();
 

@@ -1,6 +1,5 @@
-"use server";
-
-import { getToken, saveToken } from "./firebase/firebaseAdmin";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "./firebase/firebase";
 
 type Post = {
   id: string;
@@ -16,6 +15,32 @@ type RefreshResponse = {
   token_type: string;
   expires_in: number;
 };
+
+type TokenData = {
+  access_token: string;
+  updated_at: number;
+};
+
+export async function getToken(): Promise<TokenData> {
+  const snap = await getDoc(doc(db, "config", "instagram"));
+
+  if (!snap.exists()) {
+    throw new Error("Instagram token not found");
+  }
+  const data = snap.data();
+
+  return {
+    access_token: data.access_token,
+    updated_at: data.updated_at,
+  };
+}
+
+export async function saveToken(token: string) {
+  await setDoc(doc(db, "config", "instagram"), {
+    access_token: token,
+    updated_at: Date.now(),
+  });
+}
 
 /**
  * Constants

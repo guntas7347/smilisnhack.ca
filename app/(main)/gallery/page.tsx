@@ -1,6 +1,3 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 import ContactCard from "@/components/ContactCard";
 import { getGallery } from "@/lib/instagramPosts";
 import { timeAgo } from "@/lib/utils";
@@ -17,8 +14,6 @@ type GalleryImage = {
 
 const GalleryPage = async () => {
   const images: GalleryImage[] = await getGallery();
-
-  console.log("GALLERY PAGE HIT");
 
   const hero = images.slice(0, 3);
   const grid = images.slice(0);

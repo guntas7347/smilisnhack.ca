@@ -1,4 +1,5 @@
 import ContactCard from "@/components/ContactCard";
+import { getToken } from "@/lib/firebase/firebaseAdmin";
 import { getGallery } from "@/lib/instagramPosts";
 import { timeAgo } from "@/lib/utils";
 import { Calendar, Loader } from "lucide-react";
@@ -14,6 +15,10 @@ type GalleryImage = {
 
 const GalleryPage = async () => {
   const images: GalleryImage[] = await getGallery();
+
+  const token = await getToken();
+
+  console.log(token);
 
   const hero = images.slice(0, 3);
   const grid = images.slice(0);

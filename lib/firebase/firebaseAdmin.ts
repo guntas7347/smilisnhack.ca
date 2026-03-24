@@ -18,20 +18,29 @@ if (!admin.apps.length) {
 
 const adminDb = admin.firestore();
 
-export async function getToken(): Promise<string> {
+type TokenData = {
+  access_token: string;
+  updated_at: number; // token issued time
+};
+
+export async function getToken(): Promise<TokenData> {
   const snap = await adminDb.doc("config/instagram").get();
 
   if (!snap.exists) {
     throw new Error("Instagram token not found");
   }
 
-  return snap.data()?.access_token;
+  const data = snap.data();
+
+  return {
+    access_token: data?.access_token,
+    updated_at: data?.updated_at,
+  };
 }
 
-export async function saveToken(token: string, expiresIn: number) {
+export async function saveToken(token: string) {
   await adminDb.doc("config/instagram").set({
     access_token: token,
-    expires_in: expiresIn,
-    updated_at: Date.now(),
+    updated_at: Date.now(), // ONLY updated on refresh
   });
 }

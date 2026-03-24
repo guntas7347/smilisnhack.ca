@@ -1,6 +1,6 @@
 import ContactCard from "@/components/ContactCard";
 import Testimonials from "@/components/Testimonials";
-import getGallery from "@/lib/instagramPosts";
+import { getGallery } from "@/lib/instagramPosts";
 import { timeAgo } from "@/lib/utils";
 import { Calendar, GalleryHorizontal, MapPin, Star } from "lucide-react";
 import Link from "next/link";

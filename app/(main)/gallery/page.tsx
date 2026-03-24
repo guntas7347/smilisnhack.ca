@@ -1,5 +1,5 @@
 import ContactCard from "@/components/ContactCard";
-import getGallery from "@/lib/instagramPosts";
+import { getGallery } from "@/lib/instagramPosts";
 import { timeAgo } from "@/lib/utils";
 import { Calendar, Loader } from "lucide-react";
 

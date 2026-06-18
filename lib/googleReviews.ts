@@ -1,3 +1,5 @@
+"use server";
+
 const getGoogleReviews = async () => {
   try {
     const dataId = "0x882b153f64313d17:0xb7e528b653118eae"; // smilinshack
